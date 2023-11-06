@@ -1,0 +1,82 @@
+@font-face {
+  font-family: helveticaRounded;
+  src: url(./fonts/HelveticaRoundedBold.otf);
+}
+nav {
+  width: 100%;
+  height: 154px;
+  background-color: #A2EEEE;
+  padding: 0 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav .nav-title {
+  display: flex;
+  align-items: center;
+  font-family: helveticaRounded;
+  font-size: 28px;
+  color: #385A94;
+}
+nav .nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+nav .nav-btns .nav-btn {
+  padding: 0 26px;
+  background-color: #FFFFFF;
+  border-radius: 50px;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #385A94;
+  font-size: 25px;
+  text-decoration: none;
+  font-family: helveticaRounded;
+  filter: drop-shadow(0 8px 0px #385A94);
+}
+nav .nav-btns .nav-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-underline-offset: 3px;
+  text-decoration-color: #385A94;
+  text-decoration-thickness: 2px;
+}
+nav .nav-btns .nav-user-btn i {
+  font-size: 40px;
+  color: #385A94;
+  text-decoration: none;
+}
+nav .nav-btns .nav-user-btn p {
+  font-size: 25px;
+  font-family: helveticaRounded;
+  color: #385A94;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+#app {
+  background-color: #D4FFDD;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+#app #content {
+  width: 1112px;
+  min-height: 500px;
+  background-color: #FFFFFF;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,30 @@
+@import './variables.scss';
+@import './fonts.scss';
+@import './nav.scss';
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+html, body {
+ height: 100%
+}
+h1, h2, h3, h4, h5, h6, p {
+ //margin-bottom: 16px
+}
+
+#app {
+    background-color: $site-light-green;
+    min-height: 800px;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+
+    #content {
+        width: 1112px;
+        min-height: 500px;
+        background-color: $site-white;
+    }
+}
+
