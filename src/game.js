@@ -1,17 +1,4 @@
-export let playerData = {
-  pokeballs: {
-    poke: 99,
-    great: 99,
-    ultra: 99,
-    master: 99,
-  },
-
-  berries: {
-    razz: 99,
-    nanab: 99,
-    pinap: 99,
-  },
-};
+import { updateUserInfo, userData } from "./model";
 
 export const s = (p) => {
   let locationPokemon = [
@@ -796,17 +783,17 @@ export const s = (p) => {
           p.image(ultraballBtn, 104 * canvasScale, 109 * canvasScale);
 
           p.text(
-            "x" + playerData.pokeballs.poke,
+            "x" + userData.items.pokeballs.poke,
             27 * canvasScale,
             126 * canvasScale
           );
           p.text(
-            "x" + playerData.pokeballs.great,
+            "x" + userData.items.pokeballs.great,
             75 * canvasScale,
             126 * canvasScale
           );
           p.text(
-            "x" + playerData.pokeballs.ultra,
+            "x" + userData.items.pokeballs.ultra,
             123 * canvasScale,
             126 * canvasScale
           );
@@ -822,17 +809,17 @@ export const s = (p) => {
           p.image(pinapBtn, 104 * canvasScale, 109 * canvasScale);
 
           p.text(
-            "x" + playerData.berries.razz,
+            "x" + userData.items.berries.razz,
             27 * canvasScale,
             126 * canvasScale
           );
           p.text(
-            "x" + playerData.berries.nanab,
+            "x" + userData.items.berries.nanab,
             75 * canvasScale,
             126 * canvasScale
           );
           p.text(
-            "x" + playerData.berries.pinap,
+            "x" + userData.items.berries.pinap,
             123 * canvasScale,
             126 * canvasScale
           );
@@ -996,11 +983,12 @@ export const s = (p) => {
           p.mouseX < (8 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          playerData.pokeballs.poke > 0
+          userData.items.pokeballs.poke > 0
         ) {
           throwItem("pokeball");
           currentMenu = "none";
-          playerData.pokeballs.poke--;
+          userData.items.pokeballs.poke--;
+          updateUserInfo();
         }
 
         if (
@@ -1008,11 +996,12 @@ export const s = (p) => {
           p.mouseX < (56 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          playerData.pokeballs.great > 0
+          userData.items.pokeballs.great > 0
         ) {
           throwItem("greatball");
           currentMenu = "none";
-          playerData.pokeballs.great--;
+          userData.items.pokeballs.great--;
+          updateUserInfo();
         }
 
         if (
@@ -1020,11 +1009,12 @@ export const s = (p) => {
           p.mouseX < (104 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          playerData.pokeballs.ultra > 0
+          userData.items.pokeballs.ultra > 0
         ) {
           throwItem("ultraball");
           currentMenu = "none";
-          playerData.pokeballs.ultra--;
+          userData.items.pokeballs.ultra--;
+          updateUserInfo();
         }
       }
 
@@ -1035,11 +1025,12 @@ export const s = (p) => {
           p.mouseX < (8 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          playerData.pokeballs.poke > 0
+          userData.items.pokeballs.poke > 0
         ) {
           throwItem("razz");
           currentMenu = "none";
-          playerData.berries.razz--;
+          userData.items.berries.razz--;
+          updateUserInfo();
         }
 
         if (
@@ -1047,11 +1038,12 @@ export const s = (p) => {
           p.mouseX < (56 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          playerData.pokeballs.great > 0
+          userData.items.pokeballs.great > 0
         ) {
           throwItem("nanab");
           currentMenu = "none";
-          playerData.berries.nanab--;
+          userData.items.berries.nanab--;
+          updateUserInfo();
         }
 
         if (
@@ -1059,11 +1051,12 @@ export const s = (p) => {
           p.mouseX < (104 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          playerData.pokeballs.ultra > 0
+          userData.items.pokeballs.ultra > 0
         ) {
           throwItem("pinap");
           currentMenu = "pinap";
-          playerData.pokeballs.ultra--;
+          userData.items.pokeballs.ultra--;
+          updateUserInfo();
         }
       }
     }

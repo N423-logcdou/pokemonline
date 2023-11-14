@@ -7,7 +7,17 @@ import {
   getDocs,
   where,
   query,
+  setDoc,
+  doc,
 } from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
 
 import * as game from "./game.js";
 
@@ -24,28 +34,16 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+let currentUID;
+let currentDocID;
+
+export let userData = {};
 
 let myp5;
 
 export var test = "test";
-
-// //FIREBASE TEST
-// export async function getAllData() {
-//   // gets all the data from the collection
-//   const querySnapshot = await getDocs(collection(db, "Albums"));
-//   let htmlStr = "";
-//   querySnapshot.forEach((doc) => {
-//     htmlStr += `<div class="album-item">
-//       <img src="${doc.data().photo}">
-//       <p class="name">Title: ${doc.data().title}</p>
-//       <p class="name">Artist: ${doc.data().artist}</p>
-//       <p class="name">Genre: ${doc.data().genre}</p>
-//       </div>`
-//   });
-//   console.log(htmlStr);
-
-//   return htmlStr;
-// }
 
 // Sets page content depending on pageID & subpageID. Also can run app.js callback functions for event listeners.
 function changePage(pageID, subpageID, callback) {
@@ -56,7 +54,7 @@ function changePage(pageID, subpageID, callback) {
         if (myp5 != null) {
           myp5.remove();
         }
-      })
+      });
       break;
     case "play":
       $.get(`pages/play.html`, function (contents) {
@@ -89,12 +87,19 @@ function changePage(pageID, subpageID, callback) {
       });
       break;
     case "login":
+      if (myp5 != null) {
+        myp5.remove();
+      }
       $.get(`pages/login.html`, function (contents) {
         $("#content").html(contents);
-        if (myp5 != null) {
-          myp5.remove();
-        }
       });
+      break;
+    case "logout":
+      if (myp5 != null) {
+        myp5.remove();
+      }
+      logout();
+      window.location.hash = "#home";
       break;
     default:
       $.get(`pages/home.html`, function (contents) {
@@ -104,6 +109,116 @@ function changePage(pageID, subpageID, callback) {
         }
       });
   }
+}
+
+export async function updateUserInfo() {
+  await setDoc(
+    doc(db, "Users", currentDocID),
+    {
+      items: userData.items,
+    },
+    { merge: true }
+  );
+}
+
+async function collectUserInfo(uid) {
+  const q = query(collection(db, "Users"), where("uid", "==", uid));
+  const querySnapshot = await getDocs(q);
+  userData = querySnapshot.docs[0].data();
+  currentDocID = querySnapshot.docs[0].id;
+
+  console.log(currentDocID);
+}
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    console.log("user id: ", uid);
+    $("#login-zone").html(`<a href="#logout" class="nav-user-btn">
+    <i class="fa-regular fa-user"></i>
+    <p>Log Out</p>
+</a>`);
+    currentUID = uid;
+    collectUserInfo(uid);
+  } else {
+    console.log("signed out");
+    $("#login-zone").html(`<a href="#login" class="nav-user-btn">
+    <i class="fa-regular fa-user"></i>
+    <p>Log In</p>
+</a>`);
+    userData = {};
+    currentUID = null;
+  }
+});
+
+export async function addUser(uid, username) {
+  let userObj = {
+    uid: uid,
+    username: username,
+    items: {
+      pokeballs: {
+        poke: 50,
+        great: 50,
+        ultra: 50,
+        master: 50,
+      },
+
+      berries: {
+        razz: 50,
+        nanab: 50,
+        pinap: 50,
+      },
+    },
+  };
+
+  try {
+    const docRef = await addDoc(collection(db, "Users"), userObj);
+    console.log("Doc id: ", docRef.id);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export function createAccount() {
+  console.log("account created");
+  let uName = $("#uNameC").val();
+  let email = $("#emailC").val();
+  let pw = $("#pwC").val();
+  createUserWithEmailAndPassword(auth, email, pw)
+    .then((userCredentials) => {
+      console.log("created ", userCredentials.user.uid);
+      addUser(userCredentials.user.uid, uName);
+    })
+    .catch((error) => {
+      console.log("error ", error.message);
+    });
+}
+
+window.createAccount = createAccount;
+
+export function login() {
+  console.log("sign in");
+  let email = $("#email").val();
+  let pw = $("#pw").val();
+
+  signInWithEmailAndPassword(auth, email, pw)
+    .then((userCredentials) => {
+      console.log("signed in as ", userCredentials.user);
+    })
+    .catch((error) => {
+      console.log("error ", error.message);
+    });
+}
+window.login = login;
+
+export function logout() {
+  signOut(auth)
+    .then(() => {
+      console.log("signed out");
+    })
+    .catch((error) => {
+      console.log("error ", error.message);
+    });
 }
 
 export function changeRoute() {
