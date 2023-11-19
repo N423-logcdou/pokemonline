@@ -56,6 +56,29 @@ nav .nav-btns .nav-user-btn p {
   color: #385A94;
 }
 
+#loginPage {
+  padding-top: 50px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.signup-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#signIn, #createAcctBtn {
+  margin-top: 20px;
+}
+
 * {
   margin: 0;
   padding: 0;

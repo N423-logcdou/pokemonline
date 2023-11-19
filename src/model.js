@@ -57,34 +57,51 @@ function changePage(pageID, subpageID, callback) {
       });
       break;
     case "play":
-      $.get(`pages/play.html`, function (contents) {
-        $("#content").html(contents);
-        myp5 = new p5(game.s);
-      });
+      if (currentUID != null) {
+        $.get(`pages/play.html`, function (contents) {
+          $("#content").html(contents);
+          myp5 = new p5(game.s);
+        });
+      } else {
+        window.location.hash = "#login";
+      }
       break;
     case "pokedex":
-      $.get(`pages/pokedex.html`, function (contents) {
-        $("#content").html(contents);
-        if (myp5 != null) {
-          myp5.remove();
-        }
-      });
+      if (myp5 != null) {
+        myp5.remove();
+      }
+      if (currentUID != null) {
+        $.get(`pages/pokedex.html`, function (contents) {
+          $("#content").html(contents);
+        });
+      } else {
+        window.location.hash = "#login";
+      }
       break;
     case "storage":
-      $.get(`pages/storage.html`, function (contents) {
-        $("#content").html(contents);
-        if (myp5 != null) {
-          myp5.remove();
-        }
-      });
+      if (myp5 != null) {
+        myp5.remove();
+      }
+      if (currentUID != null) {
+        $.get(`pages/storage.html`, function (contents) {
+          $("#content").html(contents);
+        });
+      } else {
+        window.location.hash = "#login";
+      }
       break;
     case "trainers":
-      $.get(`pages/trainers.html`, function (contents) {
-        $("#content").html(contents);
-        if (myp5 != null) {
-          myp5.remove();
-        }
-      });
+      if (myp5 != null) {
+        myp5.remove();
+      }
+      if (currentUID != null) {
+        $.get(`pages/trainers.html`, function (contents) {
+          $("#content").html(contents);
+        });
+      } else {
+        window.location.hash = "#login";
+      }
+
       break;
     case "login":
       if (myp5 != null) {
