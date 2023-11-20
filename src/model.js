@@ -63,7 +63,7 @@ function changePage(pageID, subpageID, callback) {
           myp5 = new p5(game.s);
         });
       } else {
-        window.location.hash = "#login";
+        window.location.hash = "#home";
       }
       break;
     case "pokedex":
@@ -75,7 +75,7 @@ function changePage(pageID, subpageID, callback) {
           $("#content").html(contents);
         });
       } else {
-        window.location.hash = "#login";
+        window.location.hash = "#home";
       }
       break;
     case "storage":
@@ -87,7 +87,7 @@ function changePage(pageID, subpageID, callback) {
           $("#content").html(contents);
         });
       } else {
-        window.location.hash = "#login";
+        window.location.hash = "#home";
       }
       break;
     case "trainers":
@@ -99,7 +99,7 @@ function changePage(pageID, subpageID, callback) {
           $("#content").html(contents);
         });
       } else {
-        window.location.hash = "#login";
+        window.location.hash = "#home";
       }
 
       break;
@@ -133,6 +133,8 @@ export async function updateUserInfo() {
     doc(db, "Users", currentDocID),
     {
       items: userData.items,
+      pokemon: userData.pokemon,
+      pokedex: userData.pokedex
     },
     { merge: true }
   );
@@ -141,6 +143,7 @@ export async function updateUserInfo() {
 async function collectUserInfo(uid) {
   const q = query(collection(db, "Users"), where("uid", "==", uid));
   const querySnapshot = await getDocs(q);
+  console.log(querySnapshot.docs);
   userData = querySnapshot.docs[0].data();
   currentDocID = querySnapshot.docs[0].id;
 
@@ -186,6 +189,12 @@ export async function addUser(uid, username) {
         pinap: 50,
       },
     },
+    pokemon: [
+
+    ],
+    pokedex: [
+
+    ]
   };
 
   try {

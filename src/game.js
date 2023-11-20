@@ -315,6 +315,27 @@ export const s = (p) => {
     }, 3000);
   }
 
+  function checkPokedex() {
+    let seen = false;
+    userData.pokedex.forEach((pokemon) => {
+
+      if (encounterPokemon.name == pokemon.name) {
+        seen = true;
+      }
+    })
+    if (!seen) {
+      userData.pokedex.push({ name: encounterPokemon.name, caught: false });
+    }
+  }
+
+  function addCaughtStatus() {
+    userData.pokedex.forEach((pokemon) => {
+      if (encounterPokemon.name == pokemon.name) {
+        pokemon.caught = true;
+      }
+    })
+  }
+
   // Runs when preEncounter is finished
   async function encounter(poke) {
     rectOpac = 0;
@@ -328,6 +349,9 @@ export const s = (p) => {
     targetPokeX = 96;
     targetTrainerX = 16;
     grayscale = true;
+    checkPokedex();
+    updateUserInfo();
+
 
     // Ensures everything is set up within the given time (p5 animations can get out of sync)
     setTimeout(() => {
@@ -461,6 +485,13 @@ export const s = (p) => {
                     encounterMenu = false;
                     encounterNearlyDone = true;
                     encounterText = `Gotcha! ${encounterPokemon.name.toUpperCase()} was caught!`;
+                    userData.pokemon.push({
+                      name: encounterPokemon.name,
+                      level: encounterLevel,
+                      nickname: encounterPokemon.name
+                    })
+                    addCaughtStatus();
+                    updateUserInfo();
                   }
                 }, 800);
               }
@@ -646,7 +677,7 @@ export const s = (p) => {
   p.setup = function () {
     updateCanvasScale();
     let cvs = p.createCanvas(160 * canvasScale, 144 * canvasScale);
-    cvs.position(p.windowWidth / 2 - (160 * canvasScale) / 2, 400);
+    cvs.position(p.windowWidth / 2 - (160 * canvasScale) / 2, 350);
     pokeFont = p.loadFont("./css/fonts/pokefont.ttf");
     p.textFont(pokeFont);
 
@@ -694,13 +725,13 @@ export const s = (p) => {
     // Everything to render only during an encounter
     if (inEncounter) {
       if (pokeX < targetPokeX) {
-        pokeX += 2;
+        pokeX += 2 / (p.frameRate() / 60);
       } else {
         grayscale = false;
       }
 
       if (trainerX > targetTrainerX) {
-        trainerX -= 2.5;
+        trainerX -= 2.5 / (p.frameRate() / 60);
       }
       // Encounter Elements
       trainer.resizeNN(48 * canvasScale, 48 * canvasScale);

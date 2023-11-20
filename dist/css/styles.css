@@ -11,12 +11,20 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
-nav .nav-title {
+nav a {
+  text-decoration: none;
+}
+nav a .nav-title {
   display: flex;
   align-items: center;
   font-family: helveticaRounded;
   font-size: 28px;
   color: #385A94;
+  transition: color 0.2s;
+}
+nav a .nav-title:hover {
+  color: #de4777;
+  transition: color 0.2s;
 }
 nav .nav-btns {
   display: flex;
@@ -36,6 +44,12 @@ nav .nav-btns .nav-btn {
   text-decoration: none;
   font-family: helveticaRounded;
   filter: drop-shadow(0 8px 0px #385A94);
+  transition: filter 0.2s, color 0.2s;
+}
+nav .nav-btns .nav-btn:hover {
+  color: #de4777;
+  filter: drop-shadow(0 8px 0px #de4777);
+  transition: filter 0.2s, color 0.2s;
 }
 nav .nav-btns .nav-user-btn {
   display: flex;
@@ -44,16 +58,32 @@ nav .nav-btns .nav-user-btn {
   text-underline-offset: 3px;
   text-decoration-color: #385A94;
   text-decoration-thickness: 2px;
+  transition: text-decoration-color 0.2s;
 }
 nav .nav-btns .nav-user-btn i {
   font-size: 40px;
   color: #385A94;
   text-decoration: none;
+  transition: color 0.2s;
 }
 nav .nav-btns .nav-user-btn p {
   font-size: 25px;
   font-family: helveticaRounded;
   color: #385A94;
+  transition: color 0.2s;
+}
+nav .nav-btns .nav-user-btn:hover {
+  text-decoration-color: #de4777;
+  transition: text-decoration-color 0.2s;
+}
+nav .nav-btns .nav-user-btn:hover i {
+  color: #de4777;
+  transition: color 0.2s;
+}
+nav .nav-btns .nav-user-btn:hover p {
+  color: #de4777;
+  text-decoration-color: #de4777;
+  transition: color 0.2s;
 }
 
 #loginPage {

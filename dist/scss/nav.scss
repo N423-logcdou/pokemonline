@@ -9,13 +9,23 @@ nav {
     justify-content: space-between;
     align-items: center;
 
-    .nav-title {
-        display: flex;
-        align-items: center;
-        font-family: helveticaRounded;
-        font-size: 28px;
-        color: $site-navy;
+    a {
+        text-decoration: none;
+        .nav-title {
+            display: flex;
+            align-items: center;
+            font-family: helveticaRounded;
+            font-size: 28px;
+            color: $site-navy;
+            transition: color 0.2s;
+        }
+
+        .nav-title:hover {
+            color: $site-red;
+            transition: color 0.2s;
+        }
     }
+    
 
     .nav-btns {
         display: flex;
@@ -35,6 +45,16 @@ nav {
             text-decoration: none;
             font-family: helveticaRounded;
             filter: drop-shadow(0 8px 0px $site-navy);
+
+            transition: filter 0.2s, color 0.2s;
+
+        }
+
+        .nav-btn:hover{
+            color: $site-red;
+            filter: drop-shadow(0 8px 0px $site-red);
+            
+            transition: filter 0.2s, color 0.2s;
         }
 
         .nav-user-btn {
@@ -46,17 +66,37 @@ nav {
             text-decoration-color: $site-navy;
             text-decoration-thickness: 2px;
 
+            transition: text-decoration-color 0.2s;
+
             i {
                 font-size: 40px;
                 color: $site-navy;
                 text-decoration: none;
+                transition: color 0.2s;
             }
 
             p {
                 font-size: 25px;
                 font-family: helveticaRounded;
                 color: $site-navy;
-                
+                transition: color 0.2s;
+            }
+        }
+
+        .nav-user-btn:hover {
+
+            text-decoration-color: $site-red;
+            transition: text-decoration-color 0.2s;
+
+            i {
+                color: $site-red;
+                transition: color 0.2s;
+            }
+
+            p {
+                color: $site-red;
+                text-decoration-color: $site-red;
+                transition: color 0.2s;
             }
         }
 
