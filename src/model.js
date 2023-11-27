@@ -39,6 +39,8 @@ const auth = getAuth(app);
 let currentUID;
 let currentDocID;
 
+let pokedexArray = [];
+
 export let userData = {};
 
 let myp5;
@@ -74,6 +76,7 @@ function changePage(pageID, subpageID, callback) {
         $.get(`pages/pokedex.html`, function (contents) {
           $("#content").html(contents);
         });
+        pokedexLoad();
       } else {
         window.location.hash = "#home";
       }
@@ -128,13 +131,40 @@ function changePage(pageID, subpageID, callback) {
   }
 }
 
+function displayPokedex() {
+  pokedexArray.forEach((pokemon) => {
+    console.log("hello");
+    $(".pokedex").append(
+      `<img src="./images/game-images/pokemon/${pokemon.name}.png">`
+    );
+  });
+  console.log(pokedexArray);
+}
+
+async function pokedexLoad() {
+  await userData.pokedex.forEach((pokemon) => {
+    $.getJSON(
+      `https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`,
+      function (data) {
+        pokedexArray.push(data);
+
+        // $(".pokedex").append(
+        //   `<img src="./images/game-images/pokemon/${data.name}.png">`
+        // );
+      }
+    );
+  });
+
+  displayPokedex(pokedexArray);
+}
+
 export async function updateUserInfo() {
   await setDoc(
     doc(db, "Users", currentDocID),
     {
       items: userData.items,
       pokemon: userData.pokemon,
-      pokedex: userData.pokedex
+      pokedex: userData.pokedex,
     },
     { merge: true }
   );
@@ -189,12 +219,8 @@ export async function addUser(uid, username) {
         pinap: 50,
       },
     },
-    pokemon: [
-
-    ],
-    pokedex: [
-
-    ]
+    pokemon: [],
+    pokedex: [],
   };
 
   try {
