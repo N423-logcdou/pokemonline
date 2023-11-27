@@ -40,6 +40,7 @@ let currentUID;
 let currentDocID;
 
 let pokedexArray = [];
+let pokemonList = ["pidgey", "sentret", "wurmple", "zigzagoon", "oddish", "paras", "gligar", "tentacruel", "jumpluff", "drifblim", "ditto"];
 
 export let userData = {};
 
@@ -75,8 +76,9 @@ function changePage(pageID, subpageID, callback) {
       if (currentUID != null) {
         $.get(`pages/pokedex.html`, function (contents) {
           $("#content").html(contents);
+          pokedexLoad();
         });
-        pokedexLoad();
+
       } else {
         window.location.hash = "#home";
       }
@@ -131,31 +133,46 @@ function changePage(pageID, subpageID, callback) {
   }
 }
 
-function displayPokedex() {
-  pokedexArray.forEach((pokemon) => {
-    console.log("hello");
-    $(".pokedex").append(
-      `<img src="./images/game-images/pokemon/${pokemon.name}.png">`
-    );
-  });
-  console.log(pokedexArray);
-}
-
+//TODO
+// change how all of this works
 async function pokedexLoad() {
-  await userData.pokedex.forEach((pokemon) => {
+  pokedexArray = [];
+  await userData.pokedex.forEach((pokemon, index) => {
     $.getJSON(
       `https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`,
       function (data) {
         pokedexArray.push(data);
 
-        // $(".pokedex").append(
-        //   `<img src="./images/game-images/pokemon/${data.name}.png">`
-        // );
+        if (index == userData.pokedex.length - 1) {
+          $(".pokedex").html("");
+          console.log(pokedexArray);
+          pokemonList.forEach(pokemon => {
+            let encountered = false;
+            pokedexArray.forEach(dex => {
+              if (pokemon == dex.name) {
+                encountered = true;
+              }
+            })
+            if (encountered) {
+              $(".pokedex").append(
+                `<div class="pokedex-box">
+                <img src="./images/game-images/pokemon/${pokemon}.png">
+
+                </div>
+                `
+              );
+              console.log(pokemon, " has been encountered");
+            } else {
+              $(".pokedex").append(
+                `<img src="./images/game-images/pokemon/missing.png">`
+              );
+              console.log(pokemon, " has not been encountered");
+            }
+          })
+        }
       }
     );
   });
-
-  displayPokedex(pokedexArray);
 }
 
 export async function updateUserInfo() {
