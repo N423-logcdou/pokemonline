@@ -9,6 +9,7 @@ import {
   query,
   setDoc,
   doc,
+  or,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -39,8 +40,19 @@ const auth = getAuth(app);
 let currentUID;
 let currentDocID;
 
-let pokedexArray = [];
-let pokemonList = ["pidgey", "sentret", "wurmple", "zigzagoon", "oddish", "paras", "gligar", "tentacruel", "jumpluff", "drifblim", "ditto"];
+let pokedexList = [
+  { name: "pidgey", encountered: false },
+  { name: "sentret", encountered: false },
+  { name: "wurmple", encountered: false },
+  { name: "zigzagoon", encountered: false },
+  { name: "oddish", encountered: false },
+  { name: "paras", encountered: false },
+  { name: "gligar", encountered: false },
+  { name: "tentacruel", encountered: false },
+  { name: "jumpluff", encountered: false },
+  { name: "drifblim", encountered: false },
+  { name: "ditto", encountered: false },
+];
 
 export let userData = {};
 
@@ -78,7 +90,6 @@ function changePage(pageID, subpageID, callback) {
           $("#content").html(contents);
           pokedexLoad();
         });
-
       } else {
         window.location.hash = "#home";
       }
@@ -102,6 +113,7 @@ function changePage(pageID, subpageID, callback) {
       if (currentUID != null) {
         $.get(`pages/trainers.html`, function (contents) {
           $("#content").html(contents);
+          trainersLoad();
         });
       } else {
         window.location.hash = "#home";
@@ -133,45 +145,123 @@ function changePage(pageID, subpageID, callback) {
   }
 }
 
-//TODO
-// change how all of this works
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function clearPokedex() {
+  pokedexList.forEach((dex) => {
+    dex.encountered = false;
+  });
+}
+
+async function trainersQuery() {
+  let searchTrainer = $("#trainer-search").val();
+  const q = query(
+    collection(db, "Users"),
+    where("username", ">=", searchTrainer),
+    where("username", "<=", searchTrainer + "\uf8ff")
+  );
+  $("#trainers").html("");
+  const querySnapshot = await getDocs(q);
+  if (querySnapshot.docs.length > 0) {
+    querySnapshot.forEach((doc) => {
+      $("#trainers").append(`
+    <div class="trainer">
+        <div class="trainer-info-left">
+            <div class="trainer-icon">
+                <img src="./images/game-images/pokemon/missing.png" alt="">
+            </div>
+            <h4>${doc.data().username}</h4>
+        </div>
+        
+        <div class="trainer-info-right">
+            <p>Pokemon Caught: ${doc.data().pokemon.length}</p>
+            <p>Pokédex: ${doc.data().pokedex.length}</p>
+        </div>
+       
+    </div>`);
+    });
+  } else {
+    console.log("no data");
+  }
+}
+
+async function trainersLoad() {
+  $("#trainer-search-submit").on("click", function (event) {
+    event.preventDefault();
+    trainersQuery();
+  });
+  $("#trainers").html("");
+  const querySnapshot = await getDocs(collection(db, "Users"));
+  querySnapshot.forEach((doc) => {
+    $("#trainers").append(`
+    <div class="trainer">
+        <div class="trainer-info-left">
+            <div class="trainer-icon">
+                <img src="./images/game-images/pokemon/missing.png" alt="">
+            </div>
+            <h4>${doc.data().username}</h4>
+        </div>
+        
+        <div class="trainer-info-right">
+            <p>Pokemon Caught: ${doc.data().pokemon.length}</p>
+            <p>Pokédex: ${doc.data().pokedex.length}</p>
+        </div>
+       
+    </div>`);
+  });
+}
+
 async function pokedexLoad() {
-  pokedexArray = [];
-  await userData.pokedex.forEach((pokemon, index) => {
-    $.getJSON(
-      `https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`,
-      function (data) {
-        pokedexArray.push(data);
-
-        if (index == userData.pokedex.length - 1) {
-          $(".pokedex").html("");
-          console.log(pokedexArray);
-          pokemonList.forEach(pokemon => {
-            let encountered = false;
-            pokedexArray.forEach(dex => {
-              if (pokemon == dex.name) {
-                encountered = true;
-              }
-            })
-            if (encountered) {
-              $(".pokedex").append(
-                `<div class="pokedex-box">
-                <img src="./images/game-images/pokemon/${pokemon}.png">
-
-                </div>
-                `
-              );
-              console.log(pokemon, " has been encountered");
-            } else {
-              $(".pokedex").append(
-                `<img src="./images/game-images/pokemon/missing.png">`
-              );
-              console.log(pokemon, " has not been encountered");
-            }
-          })
-        }
+  userData.pokedex.forEach((pokemon) => {
+    pokedexList.forEach((dex) => {
+      if (pokemon.name == dex.name) {
+        dex.encountered = true;
       }
-    );
+    });
+  });
+
+  console.log(pokedexList);
+
+  await pokedexList.forEach((dex, index) => {
+    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${dex.name}`, function (data) {
+      if (dex.encountered) {
+        $(".pokedex").append(
+          `<div class="pokedex-box" id="pokedex-box-${index}">
+            <div class="pokedex-img-box">
+  
+          <img src="./images/game-images/pokemon/${data.name}.png">
+          </div>
+          <h6>#${index + 1}<h6>
+          <h5>${capitalizeFirstLetter(dex.name)}</h5>
+          <div class="pokedex-type-box" id="pokedex-type-box-${index}"></div>
+          </div>
+          `
+        );
+
+        data.types.forEach((type) => {
+          $(`#pokedex-type-box-${index}`).append(
+            `<p class="type-text, ${type.type.name}">${capitalizeFirstLetter(
+              type.type.name
+            )}</p>`
+          );
+        });
+      } else {
+        $(".pokedex").append(
+          `<div class="pokedex-box" id="pokedex-box-${index}">
+            <div class="pokedex-img-box">
+    
+          <img src="./images/game-images/pokemon/missing.png">
+          </div>
+          <h6>#${index + 1}<h6>
+          <h5>?????</h5>
+          <div class="pokedex-type-box" id="pokedex-type-box-${index}"></div>
+          </div>
+          `
+        );
+      }
+    });
   });
 }
 
@@ -198,6 +288,7 @@ async function collectUserInfo(uid) {
 }
 
 onAuthStateChanged(auth, (user) => {
+  clearPokedex();
   if (user) {
     const uid = user.uid;
     console.log("user id: ", uid);

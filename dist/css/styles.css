@@ -109,6 +109,148 @@ h1 {
   margin-top: 20px;
 }
 
+.pokedex-title {
+  margin-top: 35px;
+}
+
+.pokedex {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 30px;
+}
+.pokedex .pokedex-box .pokedex-img-box {
+  width: 200px;
+  height: 200px;
+  background-color: #A2EEEE;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.pokedex .pokedex-box .pokedex-img-box img {
+  width: 150px;
+  image-rendering: pixelated;
+}
+.pokedex .pokedex-box .pokedex-type-box {
+  display: flex;
+  gap: 10px;
+}
+.pokedex .pokedex-box .pokedex-type-box p {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  width: 75px;
+  text-align: center;
+}
+.pokedex .pokedex-box .pokedex-type-box .normal {
+  background-color: #A8A77A;
+}
+.pokedex .pokedex-box .pokedex-type-box .fire {
+  background-color: #EE8130;
+}
+.pokedex .pokedex-box .pokedex-type-box .water {
+  background-color: #6390F0;
+}
+.pokedex .pokedex-box .pokedex-type-box .electric {
+  background-color: #F7D02C;
+}
+.pokedex .pokedex-box .pokedex-type-box .grass {
+  background-color: #7AC74C;
+}
+.pokedex .pokedex-box .pokedex-type-box .ice {
+  background-color: #96D9D6;
+}
+.pokedex .pokedex-box .pokedex-type-box .fighting {
+  background-color: #C22E28;
+}
+.pokedex .pokedex-box .pokedex-type-box .poison {
+  background-color: #A33EA1;
+}
+.pokedex .pokedex-box .pokedex-type-box .ground {
+  background-color: #E2BF65;
+}
+.pokedex .pokedex-box .pokedex-type-box .flying {
+  background-color: #A98FF3;
+}
+.pokedex .pokedex-box .pokedex-type-box .psychic {
+  background-color: #F95587;
+}
+.pokedex .pokedex-box .pokedex-type-box .bug {
+  background-color: #A6B91A;
+}
+.pokedex .pokedex-box .pokedex-type-box .rock {
+  background-color: #B6A136;
+}
+.pokedex .pokedex-box .pokedex-type-box .ghost {
+  background-color: #735797;
+}
+.pokedex .pokedex-box .pokedex-type-box .dragon {
+  background-color: #6F35FC;
+}
+.pokedex .pokedex-box .pokedex-type-box .dark {
+  background-color: #705746;
+}
+.pokedex .pokedex-box .pokedex-type-box .steel {
+  background-color: #B7B7CE;
+}
+.pokedex .pokedex-box .pokedex-type-box .fairy {
+  background-color: #D685AD;
+}
+
+.trainer-title {
+  margin-top: 35px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+#trainers {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 20px;
+  gap: 20px;
+}
+#trainers .trainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #A2EEEE;
+  border-radius: 15px;
+  gap: 20px;
+}
+#trainers .trainer .trainer-icon {
+  width: 100px;
+  height: 100px;
+  background-color: #77e4e4;
+  border-radius: 15px;
+}
+#trainers .trainer .trainer-icon img {
+  width: 100%;
+  image-rendering: pixelated;
+}
+#trainers .trainer .trainer-info-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+#trainers .trainer .trainer-info-right {
+  display: flex;
+  gap: 20px;
+  margin-right: 20px;
+}
+#trainers .trainer h4 {
+  margin: 0;
+  color: #385A94;
+}
+#trainers .trainer p {
+  margin: 0;
+}
+
 * {
   margin: 0;
   padding: 0;

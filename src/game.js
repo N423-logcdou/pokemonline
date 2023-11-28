@@ -318,11 +318,10 @@ export const s = (p) => {
   function checkPokedex() {
     let seen = false;
     userData.pokedex.forEach((pokemon) => {
-
       if (encounterPokemon.name == pokemon.name) {
         seen = true;
       }
-    })
+    });
     if (!seen) {
       userData.pokedex.push({ name: encounterPokemon.name, caught: false });
     }
@@ -333,7 +332,7 @@ export const s = (p) => {
       if (encounterPokemon.name == pokemon.name) {
         pokemon.caught = true;
       }
-    })
+    });
   }
 
   // Runs when preEncounter is finished
@@ -351,7 +350,6 @@ export const s = (p) => {
     grayscale = true;
     checkPokedex();
     updateUserInfo();
-
 
     // Ensures everything is set up within the given time (p5 animations can get out of sync)
     setTimeout(() => {
@@ -488,8 +486,8 @@ export const s = (p) => {
                     userData.pokemon.push({
                       name: encounterPokemon.name,
                       level: encounterLevel,
-                      nickname: encounterPokemon.name
-                    })
+                      nickname: encounterPokemon.name,
+                    });
                     addCaughtStatus();
                     updateUserInfo();
                   }
@@ -933,7 +931,7 @@ export const s = (p) => {
   p.windowResized = function () {
     updateCanvasScale();
     p.resizeCanvas(160 * canvasScale, 144 * canvasScale);
-    cvs.position(windowWidth / 2 - (160 * canvasScale) / 2, 200);
+    //cvs.position(p.windowWidth / 2 - (160 * canvasScale) / 2, 200);
   };
 
   function screenInteract() {
