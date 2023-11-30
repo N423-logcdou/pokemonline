@@ -349,11 +349,22 @@ async function trainersQuery() {
   const querySnapshot = await getDocs(q);
   if (querySnapshot.docs.length > 0) {
     querySnapshot.forEach((doc) => {
+      let userIconFilepath = "";
+      switch (doc.data().icon) {
+        case 0:
+          userIconFilepath = "trainer-front.png";
+          break;
+        case 1:
+          userIconFilepath = "trainer2-front.png";
+          break;
+        default:
+          userIconFilepath = "pokemon/missing.png";
+      }
       $("#trainers").append(`
     <div class="trainer">
         <div class="trainer-info-left">
             <div class="trainer-icon">
-                <img src="./images/game-images/pokemon/missing.png" alt="">
+                <img src="./images/game-images/${userIconFilepath}" alt="">
             </div>
             <h4>${doc.data().username}</h4>
         </div>
@@ -378,11 +389,22 @@ async function trainersLoad() {
   $("#trainers").html("");
   const querySnapshot = await getDocs(collection(db, "Users"));
   querySnapshot.forEach((doc) => {
+    let userIconFilepath = "";
+    switch (doc.data().icon) {
+      case 0:
+        userIconFilepath = "trainer-front.png";
+        break;
+      case 1:
+        userIconFilepath = "trainer2-front.png";
+        break;
+      default:
+        userIconFilepath = "pokemon/missing.png";
+    }
     $("#trainers").append(`
     <div class="trainer">
         <div class="trainer-info-left">
             <div class="trainer-icon">
-                <img src="./images/game-images/pokemon/missing.png" alt="">
+                <img src="./images/game-images/${userIconFilepath}" alt="">
             </div>
             <h4>${doc.data().username}</h4>
         </div>
