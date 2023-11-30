@@ -6,19 +6,43 @@ export const s = (p) => {
       name: "pidgey",
       poolVal: 50,
       minLevel: 5,
-      maxLevel: 10,
+      maxLevel: 17,
+    },
+    {
+      name: "pidgeotto",
+      poolVal: 15,
+      minLevel: 18,
+      maxLevel: 35,
+    },
+    {
+      name: "pidgeot",
+      poolVal: 10,
+      minLevel: 36,
+      maxLevel: 55,
     },
     {
       name: "zigzagoon",
       poolVal: 50,
       minLevel: 5,
-      maxLevel: 10,
+      maxLevel: 20,
+    },
+    {
+      name: "linoone",
+      poolVal: 10,
+      minLevel: 20,
+      maxLevel: 32,
     },
     {
       name: "sentret",
       poolVal: 50,
       minLevel: 5,
-      maxLevel: 10,
+      maxLevel: 14,
+    },
+    {
+      name: "furret",
+      poolVal: 15,
+      minLevel: 15,
+      maxLevel: 30,
     },
     {
       name: "wurmple",
@@ -27,16 +51,64 @@ export const s = (p) => {
       maxLevel: 10,
     },
     {
-      name: "oddish",
+      name: "silcoon",
       poolVal: 20,
       minLevel: 7,
+      maxLevel: 20,
+    },
+    {
+      name: "beautifly",
+      poolVal: 10,
+      minLevel: 10,
+      maxLevel: 32,
+    },
+    {
+      name: "cascoon",
+      poolVal: 20,
+      minLevel: 7,
+      maxLevel: 20,
+    },
+    {
+      name: "dustox",
+      poolVal: 10,
+      minLevel: 10,
+      maxLevel: 32,
+    },
+    {
+      name: "oddish",
+      poolVal: 25,
+      minLevel: 7,
       maxLevel: 10,
+    },
+    {
+      name: "gloom",
+      poolVal: 10,
+      minLevel: 21,
+      maxLevel: 32,
+    },
+    {
+      name: "vileplume",
+      poolVal: 8,
+      minLevel: 21,
+      maxLevel: 45,
+    },
+    {
+      name: "bellossom",
+      poolVal: 5,
+      minLevel: 21,
+      maxLevel: 45,
     },
     {
       name: "paras",
       poolVal: 25,
       minLevel: 7,
-      maxLevel: 10,
+      maxLevel: 23,
+    },
+    {
+      name: "parasect",
+      poolVal: 10,
+      minLevel: 24,
+      maxLevel: 45,
     },
   ];
 
@@ -623,7 +695,17 @@ export const s = (p) => {
     pokeFont = p.loadFont("./css/fonts/pokefont.ttf");
 
     pokemon = p.loadImage("./images/game-images/pokemon/ditto.png");
-    trainer = p.loadImage("./images/game-images/trainer.png");
+
+    switch (userData.icon) {
+      case 0:
+        trainer = p.loadImage("./images/game-images/trainer.png");
+        break;
+      case 1:
+        trainer = p.loadImage("./images/game-images/trainer2.png");
+        break;
+      default:
+        trainer = p.loadImage("./images/game-images/trainer.png");
+    }
 
     textbox = p.loadImage("./images/game-images/textbox.png");
     smallMenu = p.loadImage("./images/game-images/small_menu.png");

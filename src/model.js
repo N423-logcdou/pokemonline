@@ -42,11 +42,23 @@ let currentDocID;
 
 let pokedexList = [
   { name: "pidgey", encountered: false },
+  { name: "pidgeotto", encountered: false },
+  { name: "pidgeot", encountered: false },
   { name: "sentret", encountered: false },
+  { name: "furret", encountered: false },
   { name: "wurmple", encountered: false },
+  { name: "silcoon", encountered: false },
+  { name: "beautifly", encountered: false },
+  { name: "cascoon", encountered: false },
+  { name: "dustox", encountered: false },
   { name: "zigzagoon", encountered: false },
+  { name: "linoone", encountered: false },
   { name: "oddish", encountered: false },
+  { name: "gloom", encountered: false },
+  { name: "vileplume", encountered: false },
+  { name: "bellossom", encountered: false },
   { name: "paras", encountered: false },
+  { name: "parasect", encountered: false },
   { name: "gligar", encountered: false },
   { name: "tentacruel", encountered: false },
   { name: "jumpluff", encountered: false },
@@ -123,6 +135,20 @@ function changePage(pageID, subpageID, callback) {
       }
 
       break;
+    case "profile":
+      if (myp5 != null) {
+        myp5.remove();
+      }
+      if (currentUID != null) {
+        $.get(`pages/profile.html`, function (contents) {
+          $("#content").html(contents);
+          profileLoad();
+        });
+      } else {
+        window.location.hash = "#home";
+      }
+
+      break;
     case "login":
       if (myp5 != null) {
         myp5.remove();
@@ -155,6 +181,56 @@ export function capitalizeFirstLetter(string) {
 function clearPokedex() {
   pokedexList.forEach((dex) => {
     dex.encountered = false;
+  });
+}
+
+function profileLoad() {
+  //console.log(userData.icon);
+  switch (userData.icon) {
+    case 0:
+      $("#user-profile-icn-img").attr(
+        "src",
+        "./images/game-images/trainer-front.png"
+      );
+      break;
+    case 1:
+      $("#user-profile-icn-img").attr(
+        "src",
+        "./images/game-images/trainer2-front.png"
+      );
+      break;
+    default:
+      $("#user-profile-icn-img").attr(
+        "src",
+        "./images/game-images/pokemon/missing.png"
+      );
+  }
+
+  $(".profile-title").html(userData.username + "'s Profile");
+
+  $(".user-profile-username h3").html("Username: " + userData.username);
+
+  $("#profile-pokedex").html("Pokédex: " + userData.pokedex.length);
+  $("#profile-caught").html("Pokémon Caught: " + userData.pokemon.length);
+
+  $("#trainer-sprite-1-confirm").on("click", function () {
+    userData.icon = 0;
+    updateUserInfo();
+    profileLoad();
+  });
+
+  $("#trainer-sprite-2-confirm").on("click", function () {
+    userData.icon = 1;
+    updateUserInfo();
+    profileLoad();
+  });
+
+  $("#modal-username-field").attr("value", userData.username);
+
+  $("#username-confirm").on("click", function () {
+    userData.username = $("#modal-username-field").val();
+    updateUserInfo();
+    profileLoad();
   });
 }
 
@@ -376,6 +452,8 @@ export async function updateUserInfo() {
   await setDoc(
     doc(db, "Users", currentDocID),
     {
+      username: userData.username,
+      icon: userData.icon,
       items: userData.items,
       pokemon: userData.pokemon,
       pokedex: userData.pokedex,
@@ -399,8 +477,9 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
     console.log("user id: ", uid);
-    $("#login-zone").html(`<a href="#logout" class="nav-user-btn">
+    $("#login-zone").html(`<a href="#profile" class="nav-btn">
     <i class="fa-regular fa-user"></i>
+  </a><a href="#logout" class="nav-user-btn">
     <p>Log Out</p>
 </a>`);
     currentUID = uid;
@@ -408,7 +487,6 @@ onAuthStateChanged(auth, (user) => {
   } else {
     console.log("signed out");
     $("#login-zone").html(`<a href="#login" class="nav-user-btn">
-    <i class="fa-regular fa-user"></i>
     <p>Log In</p>
 </a>`);
     userData = {};
@@ -420,6 +498,7 @@ export async function addUser(uid, username) {
   let userObj = {
     uid: uid,
     username: username,
+    icon: 0,
     items: {
       pokeballs: {
         poke: 50,
