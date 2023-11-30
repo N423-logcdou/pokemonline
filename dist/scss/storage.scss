@@ -1,0 +1,35 @@
+.storage-title {
+    margin-top: 35px;
+}
+
+.storage {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px auto;
+    max-width: 860px;
+    .storage-box {
+        .nickname-box{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .storage-img-box {
+            width: 200px;
+            height: 200px;
+            background-color: $site-light-blue;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+
+            img {
+                width: 150px;
+                image-rendering: pixelated;
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { updateUserInfo, userData } from "./model";
+import { updateUserInfo, userData, capitalizeFirstLetter } from "./model";
 
 export const s = (p) => {
   let locationPokemon = [
@@ -486,7 +486,7 @@ export const s = (p) => {
                     userData.pokemon.push({
                       name: encounterPokemon.name,
                       level: encounterLevel,
-                      nickname: encounterPokemon.name,
+                      nickname: capitalizeFirstLetter(encounterPokemon.name),
                     });
                     addCaughtStatus();
                     updateUserInfo();

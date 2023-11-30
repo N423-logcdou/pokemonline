@@ -54,6 +54,8 @@ let pokedexList = [
   { name: "ditto", encountered: false },
 ];
 
+let selectedPokemon = null;
+
 export let userData = {};
 
 let myp5;
@@ -101,6 +103,7 @@ function changePage(pageID, subpageID, callback) {
       if (currentUID != null) {
         $.get(`pages/storage.html`, function (contents) {
           $("#content").html(contents);
+          storageLoad();
         });
       } else {
         window.location.hash = "#home";
@@ -145,13 +148,117 @@ function changePage(pageID, subpageID, callback) {
   }
 }
 
-function capitalizeFirstLetter(string) {
+export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function clearPokedex() {
   pokedexList.forEach((dex) => {
     dex.encountered = false;
+  });
+}
+
+function storageLoad() {
+  $(".storage").html("");
+  userData.pokemon.forEach((pokemon, index) => {
+    $(".storage").append(
+      `<div class="storage-box" id="storage-box-${index}">
+        <div class="storage-img-box">
+  
+      <img src="./images/game-images/pokemon/${pokemon.name}.png">
+      </div>
+      <h6>Lvl. ${pokemon.level}<h6>
+      <div class="nickname-box">
+      <h5>${pokemon.nickname}</h5>
+      <button type="button" class="btn btn-primary edit-nickname-btn" id="edit-nickname-btn-${index}" data-bs-toggle="modal" data-bs-target="#edit-name-${index}">
+      <i class="fa-solid fa-pencil"></i>
+      </button>
+      </div>
+      
+      <button type="button" class="btn btn-danger delete-pokemon-btn" id="delete-pokemon-btn-${index}" data-bs-toggle="modal" data-bs-target="#delete-pokemon-modal-${index}">
+        Release
+      </button>
+      <div class="storage-type-box" id="storage-type-box-${index}"></div>
+      </div>
+
+      <!-- The Modal -->
+      <div class="modal" id="edit-name-${index}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Rename Pokémon</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <input type="text" id="nickname-field-${index}" class="form-control" value="${pokemon.nickname}"/>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary nickname-confirm" data-bs-dismiss="modal" id="nickname-confirm-${index}">Confirm</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+      </div>
+      </div>
+      </div>
+
+
+      <!-- The Modal -->
+      <div class="modal" id="delete-pokemon-modal-${index}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Release Pokémon?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <p>Are you sure you want to release this Pokémon? You can't reverse this.</p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger release-confirm" data-bs-dismiss="modal" id="release-confirm-${index}">Confirm</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+      `
+    );
+  });
+
+  $(".edit-nickname-btn").on("click", function () {
+    selectedPokemon = $(this).attr("id").substring(18);
+    console.log(selectedPokemon);
+  });
+
+  $(".nickname-confirm").on("click", function () {
+    userData.pokemon[selectedPokemon].nickname = $(
+      `#nickname-field-${selectedPokemon}`
+    ).val();
+    updateUserInfo();
+    storageLoad();
+  });
+
+  $(".delete-pokemon-btn").on("click", function () {
+    selectedPokemon = $(this).attr("id").substring(19);
+    console.log(selectedPokemon);
+  });
+
+  $(".release-confirm").on("click", function () {
+    userData.pokemon.splice(selectedPokemon, 1);
+
+    updateUserInfo();
+    storageLoad();
   });
 }
 
