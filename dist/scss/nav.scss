@@ -230,3 +230,51 @@ nav {
         
     }
   }
+
+  @media only screen and (max-width: 492px) {
+    nav {
+        padding: 0 5px;
+        height: 80px;
+        a {
+            .nav-title {
+                img {
+                    width: 60px;
+                }
+                h1 {
+                    display: none;
+                }
+            }
+        }
+        .nav-btns {
+            #nav-btns-main{
+                gap: 15px;
+                display: none;
+            }
+            gap: 15px;
+            .nav-btn {
+                height: 50px;
+                padding: 0 15px;
+                font-size: 18px;
+            }
+
+            #nav-hamburger-btn{
+                display: flex;
+            }
+
+            #nav-hamburger-menu {
+                display: flex;
+            }
+
+            #login-zone {
+                .nav-user-btn {
+                    p {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        
+        
+    }
+  }

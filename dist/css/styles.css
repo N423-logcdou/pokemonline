@@ -178,6 +178,39 @@ nav .nav-btns #login-zone {
     font-size: 18px;
   }
 }
+@media only screen and (max-width: 492px) {
+  nav {
+    padding: 0 5px;
+    height: 80px;
+  }
+  nav a .nav-title img {
+    width: 60px;
+  }
+  nav a .nav-title h1 {
+    display: none;
+  }
+  nav .nav-btns {
+    gap: 15px;
+  }
+  nav .nav-btns #nav-btns-main {
+    gap: 15px;
+    display: none;
+  }
+  nav .nav-btns .nav-btn {
+    height: 50px;
+    padding: 0 15px;
+    font-size: 18px;
+  }
+  nav .nav-btns #nav-hamburger-btn {
+    display: flex;
+  }
+  nav .nav-btns #nav-hamburger-menu {
+    display: flex;
+  }
+  nav .nav-btns #login-zone .nav-user-btn p {
+    font-size: 18px;
+  }
+}
 #loginPage {
   padding-top: 50px;
   display: flex;
