@@ -39,6 +39,11 @@
             align-items: center;
             margin-bottom: 5px;
         }
+
+        .storage-btn-box {
+            display: flex;
+            justify-content: space-between;
+        }
         .storage-img-box {
             width: 200px;
             height: 200px;

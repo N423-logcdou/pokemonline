@@ -246,15 +246,17 @@ function storageLoad() {
       <h6>Lvl. ${pokemon.level}<h6>
       <div class="nickname-box">
       <h5>${pokemon.nickname}</h5>
+      </div>
+      
+      <div class="storage-btn-box">
+      <button type="button" class="btn btn-danger delete-pokemon-btn" id="delete-pokemon-btn-${index}" data-bs-toggle="modal" data-bs-target="#delete-pokemon-modal-${index}">
+        Release
+      </button>
       <button type="button" class="btn btn-primary edit-nickname-btn" id="edit-nickname-btn-${index}" data-bs-toggle="modal" data-bs-target="#edit-name-${index}">
       <i class="fa-solid fa-pencil"></i>
       </button>
       </div>
       
-      <button type="button" class="btn btn-danger delete-pokemon-btn" id="delete-pokemon-btn-${index}" data-bs-toggle="modal" data-bs-target="#delete-pokemon-modal-${index}">
-        Release
-      </button>
-      <div class="storage-type-box" id="storage-type-box-${index}"></div>
       </div>
 
       <!-- The Modal -->

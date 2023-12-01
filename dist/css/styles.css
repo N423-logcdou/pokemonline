@@ -239,6 +239,10 @@ h1 {
   align-items: center;
   margin-bottom: 5px;
 }
+.storage .storage-box .storage-btn-box {
+  display: flex;
+  justify-content: space-between;
+}
 .storage .storage-box .storage-img-box {
   width: 200px;
   height: 200px;
