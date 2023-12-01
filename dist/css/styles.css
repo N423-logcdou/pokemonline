@@ -33,6 +33,7 @@ nav .nav-btns {
 }
 nav .nav-btns #nav-btns-main {
   display: flex;
+  flex-direction: row;
   gap: 27px;
 }
 nav .nav-btns .nav-btn {
