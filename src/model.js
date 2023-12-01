@@ -37,6 +37,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+let hamburgerMenu = false;
+
 let currentUID;
 let currentDocID;
 
@@ -73,6 +75,17 @@ export let userData = {};
 let myp5;
 
 export var test = "test";
+
+export function toggleHamburger() {
+  console.log("toggle hamburger menu");
+  if (hamburgerMenu) {
+    $("#nav-hamburger-menu").attr("hidden", true);
+    hamburgerMenu = false;
+  } else {
+    $("#nav-hamburger-menu").attr("hidden", false);
+    hamburgerMenu = true;
+  }
+}
 
 // Sets page content depending on pageID & subpageID. Also can run app.js callback functions for event listeners.
 function changePage(pageID, subpageID, callback) {
@@ -601,6 +614,9 @@ export function logout() {
 }
 
 export function changeRoute() {
+  hamburgerMenu = false;
+  $("#nav-hamburger-menu").attr("hidden", true);
+
   let pageURL = window.location.hash.replace("#", "");
   //Splits the page url up by slashes and puts the pieces into an array
   let pageLayers = pageURL.split("/");

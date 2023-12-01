@@ -63,6 +63,41 @@ nav {
             transition: filter 0.2s, color 0.2s;
         }
 
+        #nav-hamburger-btn {
+            display: none;
+            color: $site-navy;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            transition: filter 0.2s, color 0.2s;
+            cursor: pointer;
+            .fa-solid {
+                font-size: 24px;
+            }
+        }
+
+        #nav-hamburger-btn:hover {
+            color: $site-red;
+        }
+
+        #nav-hamburger-menu {
+            position:absolute;
+            top: 80px;
+            display: none;
+            flex-direction: column;
+            background-color: $site-blue;
+            width: 200px;
+            padding: 10px 10px;
+            gap: 10px;
+
+
+            a {
+                font-family: helveticaRounded;
+                color: $site-navy;
+            }
+        }
+
         .nav-user-btn {
             display: flex;
             align-items: center;
@@ -132,6 +167,54 @@ nav {
                 height: 50px;
                 padding: 0 15px;
                 font-size: 18px;
+            }
+
+            #login-zone {
+                .nav-user-btn {
+                    p {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        
+        
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    nav {
+        padding: 0 30px;
+        height: 80px;
+        a {
+            .nav-title {
+                img {
+                    width: 60px;
+                }
+                h1 {
+                    font-size: 28px;
+                }
+            }
+        }
+        .nav-btns {
+            #nav-btns-main{
+                gap: 15px;
+                display: none;
+            }
+            gap: 15px;
+            .nav-btn {
+                height: 50px;
+                padding: 0 15px;
+                font-size: 18px;
+            }
+
+            #nav-hamburger-btn{
+                display: flex;
+            }
+
+            #nav-hamburger-menu {
+                display: flex;
             }
 
             #login-zone {
