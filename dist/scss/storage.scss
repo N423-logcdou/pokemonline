@@ -1,5 +1,6 @@
 .storage-title {
     margin-top: 35px;
+    color: $site-navy;
 }
 
 .storage {
@@ -9,6 +10,28 @@
     flex-wrap: wrap;
     margin: 30px auto;
     max-width: 860px;
+    color: $site-navy;
+
+    .btn-primary {
+        background-color: $site-blue;
+        border: none;
+        font-family: helveticaRounded;
+    }
+    
+    .btn-danger {
+        background-color: $site-red;
+        border: none;
+        font-family: helveticaRounded;
+    }
+    
+    .btn-primary:hover {
+        background-color: $site-navy;
+    }
+    
+    .btn-danger:hover {
+        background-color: $site-dark-red;
+    }
+
     .storage-box {
         .nickname-box{
             display: flex;

@@ -112,6 +112,7 @@ h1 {
 
 .pokedex-title {
   margin-top: 35px;
+  color: #385A94;
 }
 
 .pokedex {
@@ -120,6 +121,7 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   margin: 30px;
+  color: #385A94;
 }
 .pokedex .pokedex-box .pokedex-img-box {
   width: 200px;
@@ -203,6 +205,7 @@ h1 {
 
 .storage-title {
   margin-top: 35px;
+  color: #385A94;
 }
 
 .storage {
@@ -212,6 +215,23 @@ h1 {
   flex-wrap: wrap;
   margin: 30px auto;
   max-width: 860px;
+  color: #385A94;
+}
+.storage .btn-primary {
+  background-color: #77e4e4;
+  border: none;
+  font-family: helveticaRounded;
+}
+.storage .btn-danger {
+  background-color: #de4777;
+  border: none;
+  font-family: helveticaRounded;
+}
+.storage .btn-primary:hover {
+  background-color: #385A94;
+}
+.storage .btn-danger:hover {
+  background-color: #a33256;
 }
 .storage .storage-box .nickname-box {
   display: flex;
@@ -236,6 +256,7 @@ h1 {
 
 .trainer-title {
   margin-top: 35px;
+  color: #385A94;
 }
 
 form {
@@ -287,12 +308,30 @@ form {
 
 .profile-title {
   margin-top: 35px;
+  color: #385A94;
 }
 
 .user-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #385A94;
+}
+.user-profile .btn-primary {
+  background-color: #77e4e4;
+  border: none;
+  font-family: helveticaRounded;
+}
+.user-profile .btn-danger {
+  background-color: #de4777;
+  border: none;
+  font-family: helveticaRounded;
+}
+.user-profile .btn-primary:hover {
+  background-color: #385A94;
+}
+.user-profile .btn-danger:hover {
+  background-color: #a33256;
 }
 .user-profile .user-profile-icn {
   width: 200px;
@@ -304,11 +343,15 @@ form {
   border-radius: 20px;
   margin-top: 30px;
   cursor: pointer;
+  transition: 0.2s background-color;
 }
 .user-profile .user-profile-icn img {
   width: 150px;
   height: 150px;
   image-rendering: pixelated;
+}
+.user-profile .user-profile-icn:hover {
+  background-color: #385A94;
 }
 .user-profile .user-profile-username {
   display: flex;
@@ -348,6 +391,7 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: helveticaRounded;
+  color: #385A94;
 }
 
 #app {

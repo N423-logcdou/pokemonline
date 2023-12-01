@@ -1,11 +1,34 @@
 .profile-title {
     margin-top: 35px;
+    color: $site-navy;
 }
 
 .user-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: $site-navy;
+
+    .btn-primary {
+        background-color: $site-blue;
+        border: none;
+        font-family: helveticaRounded;
+    }
+    
+    .btn-danger {
+        background-color: $site-red;
+        border: none;
+        font-family: helveticaRounded;
+    }
+    
+    .btn-primary:hover {
+        background-color: $site-navy;
+    }
+    
+    .btn-danger:hover {
+        background-color: $site-dark-red;
+    }
+
     .user-profile-icn {
         width: 200px;
         height: 200px;
@@ -21,6 +44,12 @@
             height: 150px;
             image-rendering: pixelated;
         }
+
+        transition: .2s background-color;
+    }
+
+    .user-profile-icn:hover {
+        background-color: $site-navy;
     }
 
     .user-profile-username {
