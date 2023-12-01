@@ -32,6 +32,11 @@ nav {
         align-items: center;
         gap: 27px;
 
+        #collapsable-nav-btns{
+            display: flex;
+            gap: 27px;
+        }
+
         .nav-btn {
             padding: 0 26px;
             background-color: $site-white;
@@ -105,3 +110,39 @@ nav {
         }
     }
 }
+
+@media only screen and (max-width: 1530px) {
+    nav {
+        padding: 0 30px;
+        height: 100px;
+        a {
+            .nav-title {
+                h1 {
+                    font-size: 28px;
+                }
+            }
+        }
+        .nav-btns {
+            #collapsable-nav-btns{
+                gap: 15px;
+            }
+            gap: 15px;
+            .nav-btn {
+                height: 50px;
+                padding: 0 15px;
+                font-size: 18px;
+            }
+
+            #login-zone {
+                .nav-user-btn {
+                    p {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        
+        
+    }
+  }
