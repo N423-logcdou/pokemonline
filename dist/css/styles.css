@@ -31,7 +31,7 @@ nav .nav-btns {
   align-items: center;
   gap: 27px;
 }
-nav .nav-btns #collapsable-nav-btns {
+nav .nav-btns #nav-btns-main {
   display: flex;
   gap: 27px;
 }
@@ -102,7 +102,7 @@ nav .nav-btns #login-zone {
   nav .nav-btns {
     gap: 15px;
   }
-  nav .nav-btns #collapsable-nav-btns {
+  nav .nav-btns #nav-btns-main {
     gap: 15px;
   }
   nav .nav-btns .nav-btn {
