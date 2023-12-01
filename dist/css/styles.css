@@ -89,25 +89,56 @@ nav .nav-btns #login-zone {
 
 #loginPage {
   padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  font-family: helveticaRounded;
+  color: #385A94;
 }
-
-h1 {
+#loginPage .btn-primary {
+  background-color: #77e4e4;
+  border: none;
+  font-family: helveticaRounded;
+}
+#loginPage .btn-danger {
+  background-color: #de4777;
+  border: none;
+  font-family: helveticaRounded;
+}
+#loginPage .btn-primary:hover {
+  background-color: #385A94;
+}
+#loginPage .btn-danger:hover {
+  background-color: #a33256;
+}
+#loginPage h1 {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .login-form {
   max-width: 400px;
   margin: 0 auto;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .signup-form {
   max-width: 400px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
 }
 
 #signIn, #createAcctBtn {
   margin-top: 20px;
+  width: 100%;
+}
+
+#signup-msg, #login-msg {
+  margin: 0 auto;
+  color: #de4777;
 }
 
 .pokedex-title {
@@ -396,6 +427,11 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
   font-family: helveticaRounded;
   color: #385A94;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 #app {

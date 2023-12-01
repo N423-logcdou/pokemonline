@@ -550,6 +550,8 @@ export async function addUser(uid, username) {
 }
 
 export function createAccount() {
+  $("#signup-msg").html("");
+  $("#login-msg").html("");
   console.log("account created");
   let uName = $("#uNameC").val();
   let email = $("#emailC").val();
@@ -557,16 +559,21 @@ export function createAccount() {
   createUserWithEmailAndPassword(auth, email, pw)
     .then((userCredentials) => {
       console.log("created ", userCredentials.user.uid);
-      addUser(userCredentials.user.uid, uName);
+      addUser(userCredentials.user.uid, uName).then(() => {
+        window.location.hash = "#profile";
+      });
     })
     .catch((error) => {
       console.log("error ", error.message);
+      $("#signup-msg").html(error.message);
     });
 }
 
 window.createAccount = createAccount;
 
 export function login() {
+  $("#signup-msg").html("");
+  $("#login-msg").html("");
   console.log("sign in");
   let email = $("#email").val();
   let pw = $("#pw").val();
@@ -574,9 +581,11 @@ export function login() {
   signInWithEmailAndPassword(auth, email, pw)
     .then((userCredentials) => {
       console.log("signed in as ", userCredentials.user);
+      window.location.hash = "#home";
     })
     .catch((error) => {
       console.log("error ", error.message);
+      $("#login-msg").html(error.message);
     });
 }
 window.login = login;
