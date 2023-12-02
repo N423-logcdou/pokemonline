@@ -11,6 +11,19 @@
     margin: 30px;
     color: $site-navy;
     .pokedex-box {
+
+        .pokedex-link {
+            text-decoration: none;
+            color: $site-navy;
+            transition: color .2s;
+        }
+
+        .pokedex-link:hover {
+            color: $site-red;
+        }
+
+
+
         .pokedex-img-box {
             width: 200px;
             height: 200px;
@@ -21,10 +34,16 @@
             align-items: center;
             margin-bottom: 10px;
 
+            transition: background-color .2s;
+
             img {
                 width: 150px;
                 image-rendering: pixelated;
             }
+        }
+
+        .pokedex-img-box:hover {
+            background-color: $site-navy;
         }
 
         .pokedex-type-box {

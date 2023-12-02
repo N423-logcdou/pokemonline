@@ -128,6 +128,18 @@ export const s = (p) => {
       minLevel: 28,
       maxLevel: 45,
     },
+    {
+      name: "pikachu",
+      poolVal: 40,
+      minLevel: 5,
+      maxLevel: 24,
+    },
+    {
+      name: "raichu",
+      poolVal: 10000,
+      minLevel: 25,
+      maxLevel: 45,
+    },
   ];
 
   let rockyPokemon = [
@@ -150,6 +162,18 @@ export const s = (p) => {
       maxLevel: 56,
     },
     {
+      name: "ponyta",
+      poolVal: 35,
+      minLevel: 5,
+      maxLevel: 39,
+    },
+    {
+      name: "rapidash",
+      poolVal: 8,
+      minLevel: 40,
+      maxLevel: 56,
+    },
+    {
       name: "gligar",
       poolVal: 30,
       minLevel: 10,
@@ -160,6 +184,30 @@ export const s = (p) => {
       poolVal: 10,
       minLevel: 25,
       maxLevel: 32,
+    },
+    {
+      name: "diglett",
+      poolVal: 50,
+      minLevel: 5,
+      maxLevel: 25,
+    },
+    {
+      name: "dugtrio",
+      poolVal: 15,
+      minLevel: 26,
+      maxLevel: 36,
+    },
+    {
+      name: "sandshrew",
+      poolVal: 35,
+      minLevel: 5,
+      maxLevel: 21,
+    },
+    {
+      name: "sandslash",
+      poolVal: 15,
+      minLevel: 22,
+      maxLevel: 36,
     },
     {
       name: "drifloon",
@@ -178,6 +226,54 @@ export const s = (p) => {
       poolVal: 3,
       minLevel: 28,
       maxLevel: 45,
+    },
+    {
+      name: "paldean wooper",
+      poolVal: 35,
+      minLevel: 5,
+      maxLevel: 19,
+    },
+    {
+      name: "clodsire",
+      poolVal: 10,
+      minLevel: 20,
+      maxLevel: 35,
+    },
+    {
+      name: "shuckle",
+      poolVal: 20,
+      minLevel: 10,
+      maxLevel: 38,
+    },
+    {
+      name: "aron",
+      poolVal: 35,
+      minLevel: 5,
+      maxLevel: 31,
+    },
+    {
+      name: "lairon",
+      poolVal: 10,
+      minLevel: 32,
+      maxLevel: 41,
+    },
+    {
+      name: "aggron",
+      poolVal: 2,
+      minLevel: 42,
+      maxLevel: 56,
+    },
+    {
+      name: "croagunk",
+      poolVal: 20,
+      minLevel: 10,
+      maxLevel: 36,
+    },
+    {
+      name: "toxicroak",
+      poolVal: 5,
+      minLevel: 37,
+      maxLevel: 52,
     },
   ];
 
@@ -853,6 +949,8 @@ export const s = (p) => {
 
   // Setup function for p5. Initializes canvas & fonts
   p.setup = function () {
+    console.log("Path Pokemon: " + pathPokemon.length);
+    console.log("Rocky Pokemon: " + rockyPokemon.length);
     updateCanvasScale();
     let cvs = p.createCanvas(160 * canvasScale, 144 * canvasScale);
     cvs.position(p.windowWidth / 2 - (160 * canvasScale) / 2, 350);

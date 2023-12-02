@@ -316,6 +316,14 @@ nav .nav-btns #login-zone {
   margin: 30px;
   color: #385A94;
 }
+.pokedex .pokedex-box .pokedex-link {
+  text-decoration: none;
+  color: #385A94;
+  transition: color 0.2s;
+}
+.pokedex .pokedex-box .pokedex-link:hover {
+  color: #de4777;
+}
 .pokedex .pokedex-box .pokedex-img-box {
   width: 200px;
   height: 200px;
@@ -325,10 +333,14 @@ nav .nav-btns #login-zone {
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+  transition: background-color 0.2s;
 }
 .pokedex .pokedex-box .pokedex-img-box img {
   width: 150px;
   image-rendering: pixelated;
+}
+.pokedex .pokedex-box .pokedex-img-box:hover {
+  background-color: #385A94;
 }
 .pokedex .pokedex-box .pokedex-type-box {
   display: flex;

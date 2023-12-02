@@ -58,19 +58,35 @@ let pokedexList = [
   { name: "geodude", encountered: false },
   { name: "graveler", encountered: false },
   { name: "golem", encountered: false },
+  { name: "ponyta", encountered: false },
+  { name: "rapidash", encountered: false },
   { name: "oddish", encountered: false },
   { name: "gloom", encountered: false },
   { name: "vileplume", encountered: false },
   { name: "bellossom", encountered: false },
+  { name: "pikachu", encountered: false },
+  { name: "raichu", encountered: false },
+  { name: "sandshrew", encountered: false },
+  { name: "sandslash", encountered: false },
   { name: "paras", encountered: false },
   { name: "parasect", encountered: false },
   { name: "gligar", encountered: false },
   { name: "gliscor", encountered: false },
+  { name: "aron", encountered: false },
+  { name: "lairon", encountered: false },
+  { name: "aggron", encountered: false },
   { name: "hoppip", encountered: false },
   { name: "skiploom", encountered: false },
   { name: "jumpluff", encountered: false },
+  { name: "diglett", encountered: false },
+  { name: "dugtrio", encountered: false },
   { name: "drifloon", encountered: false },
   { name: "drifblim", encountered: false },
+  { name: "wooper", encountered: false },
+  { name: "clodsire", encountered: false },
+  { name: "shuckle", encountered: false },
+  { name: "croagunk", encountered: false },
+  { name: "toxicroak", encountered: false },
   { name: "ditto", encountered: false },
 ];
 
@@ -456,16 +472,27 @@ async function pokedexLoad() {
   console.log(pokedexList);
 
   await pokedexList.forEach((dex, index) => {
+    if (dex.name == "wooper") {
+      dex.name = "wooper-paldea";
+    }
     $.getJSON(`https://pokeapi.co/api/v2/pokemon/${dex.name}`, function (data) {
       if (dex.encountered) {
         $(".pokedex").append(
           `<div class="pokedex-box" id="pokedex-box-${index}">
-            <div class="pokedex-img-box">
+          <a href="https://bulbapedia.bulbagarden.net/wiki/${capitalizeFirstLetter(
+            dex.name.split("-")[0]
+          )}_(Pok%C3%A9mon)" target="_blank" class="pokedex-link"><div class="pokedex-img-box" >
   
-          <img src="./images/game-images/pokemon/${data.name}.png">
-          </div>
+          <img src="./images/game-images/pokemon/${
+            data.name.split("-")[0]
+          }.png">
+          </div></a>
           <h6>#${index + 1}<h6>
-          <h5>${capitalizeFirstLetter(dex.name)}</h5>
+          <a href="https://bulbapedia.bulbagarden.net/wiki/${capitalizeFirstLetter(
+            dex.name.split("-")[0]
+          )}_(Pok%C3%A9mon)" target="_blank" class="pokedex-link"><h5>${capitalizeFirstLetter(
+            dex.name.split("-")[0]
+          )}</h5></a>
           <div class="pokedex-type-box" id="pokedex-type-box-${index}"></div>
           </div>
           `
