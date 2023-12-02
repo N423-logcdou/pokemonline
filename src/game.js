@@ -163,7 +163,7 @@ export const s = (p) => {
     },
     {
       name: "drifloon",
-      poolVal: 2500,
+      poolVal: 25,
       minLevel: 10,
       maxLevel: 27,
     },
