@@ -1278,14 +1278,14 @@ export const s = (p) => {
         }
       }
 
-      // POKEBALL MENU CLICK LISTENERS
+      // BERRY MENU CLICK LISTENERS
       if (currentMenu == "item") {
         if (
           p.mouseX > 8 * canvasScale &&
           p.mouseX < (8 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          userData.items.pokeballs.poke > 0
+          userData.items.berries.razz > 0
         ) {
           throwItem("razz");
           currentMenu = "none";
@@ -1298,7 +1298,7 @@ export const s = (p) => {
           p.mouseX < (56 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          userData.items.pokeballs.great > 0
+          userData.items.berries.nanab > 0
         ) {
           throwItem("nanab");
           currentMenu = "none";
@@ -1311,11 +1311,11 @@ export const s = (p) => {
           p.mouseX < (104 + 48) * canvasScale &&
           p.mouseY > 109 * canvasScale &&
           p.mouseY < (109 + 24) * canvasScale &&
-          userData.items.pokeballs.ultra > 0
+          userData.items.berries.pinap > 0
         ) {
           throwItem("pinap");
           currentMenu = "pinap";
-          userData.items.pokeballs.ultra--;
+          userData.items.berries.pinap--;
           updateUserInfo();
         }
       }
