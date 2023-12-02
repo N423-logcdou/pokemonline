@@ -55,6 +55,9 @@ let pokedexList = [
   { name: "dustox", encountered: false },
   { name: "zigzagoon", encountered: false },
   { name: "linoone", encountered: false },
+  { name: "geodude", encountered: false },
+  { name: "graveler", encountered: false },
+  { name: "golem", encountered: false },
   { name: "oddish", encountered: false },
   { name: "gloom", encountered: false },
   { name: "vileplume", encountered: false },
@@ -62,8 +65,11 @@ let pokedexList = [
   { name: "paras", encountered: false },
   { name: "parasect", encountered: false },
   { name: "gligar", encountered: false },
-  { name: "tentacruel", encountered: false },
+  { name: "gliscor", encountered: false },
+  { name: "hoppip", encountered: false },
+  { name: "skiploom", encountered: false },
   { name: "jumpluff", encountered: false },
+  { name: "drifloon", encountered: false },
   { name: "drifblim", encountered: false },
   { name: "ditto", encountered: false },
 ];
@@ -91,11 +97,12 @@ export function toggleHamburger() {
 function changePage(pageID, subpageID, callback) {
   switch (pageID) {
     case "home":
+      if (myp5 != null) {
+        myp5.remove();
+      }
       $.get(`pages/home.html`, function (contents) {
         $("#content").html(contents);
-        if (myp5 != null) {
-          myp5.remove();
-        }
+        homeLoad();
       });
       break;
     case "play":
@@ -195,6 +202,10 @@ function clearPokedex() {
   pokedexList.forEach((dex) => {
     dex.encountered = false;
   });
+}
+
+function homeLoad() {
+  $("#poke-count").html(pokedexList.length);
 }
 
 function profileLoad() {

@@ -1,0 +1,43 @@
+.home-title {
+    margin-top: 35px;
+    color: $site-navy;
+    margin-bottom: 50px;
+}
+
+.home-content-body {
+    display: flex;
+
+    h2 {
+        color: $site-navy;
+    }
+
+    p {
+        color:$site-navy;
+        font-family: benton;
+        font-size: 18px;
+    }
+
+    .home-content-about {
+        width: 40%;
+        padding: 0 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home-content-game {
+        width: 60%;
+        padding: 0 40px;
+
+        .map-imgs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            img {
+                width: 45%;
+                image-rendering: pixelated;
+            }
+        }
+    }
+}

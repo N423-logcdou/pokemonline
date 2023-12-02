@@ -1,7 +1,7 @@
 import { updateUserInfo, userData, capitalizeFirstLetter } from "./model";
 
 export const s = (p) => {
-  let locationPokemon = [
+  let pathPokemon = [
     {
       name: "pidgey",
       poolVal: 50,
@@ -110,6 +110,75 @@ export const s = (p) => {
       minLevel: 24,
       maxLevel: 45,
     },
+    {
+      name: "hoppip",
+      poolVal: 35,
+      minLevel: 5,
+      maxLevel: 17,
+    },
+    {
+      name: "skiploom",
+      poolVal: 20,
+      minLevel: 18,
+      maxLevel: 26,
+    },
+    {
+      name: "jumpluff",
+      poolVal: 15,
+      minLevel: 28,
+      maxLevel: 45,
+    },
+  ];
+
+  let rockyPokemon = [
+    {
+      name: "geodude",
+      poolVal: 50,
+      minLevel: 5,
+      maxLevel: 24,
+    },
+    {
+      name: "graveler",
+      poolVal: 25,
+      minLevel: 25,
+      maxLevel: 42,
+    },
+    {
+      name: "golem",
+      poolVal: 5,
+      minLevel: 25,
+      maxLevel: 56,
+    },
+    {
+      name: "gligar",
+      poolVal: 30,
+      minLevel: 10,
+      maxLevel: 24,
+    },
+    {
+      name: "gliscor",
+      poolVal: 10,
+      minLevel: 25,
+      maxLevel: 32,
+    },
+    {
+      name: "drifloon",
+      poolVal: 2500,
+      minLevel: 10,
+      maxLevel: 27,
+    },
+    {
+      name: "drifblim",
+      poolVal: 8,
+      minLevel: 28,
+      maxLevel: 45,
+    },
+    {
+      name: "ditto",
+      poolVal: 3,
+      minLevel: 28,
+      maxLevel: 45,
+    },
   ];
 
   class TallGrass {
@@ -160,6 +229,9 @@ export const s = (p) => {
 
   let overworldBG;
   let tallGrassImg;
+
+  let upArrow;
+  let downArrow;
 
   let overworldLocation = "path";
   let tallGrassList = [];
@@ -266,6 +338,7 @@ export const s = (p) => {
     console.log("init overworld");
     tallGrassList = [];
     if (overworldLocation == "path") {
+      overworldBG = p.loadImage("./images/game-images/overworld_1.png");
       tallGrassList.push(new TallGrass(80, 32));
       tallGrassList.push(new TallGrass(96, 32));
       tallGrassList.push(new TallGrass(80, 48));
@@ -278,7 +351,29 @@ export const s = (p) => {
       tallGrassList.push(new TallGrass(96, 96));
       tallGrassList.push(new TallGrass(80, 112));
       tallGrassList.push(new TallGrass(96, 112));
+    } else {
+      overworldBG = p.loadImage("./images/game-images/overworld_2.png");
+      tallGrassList.push(new TallGrass(16, 16));
+      tallGrassList.push(new TallGrass(32, 16));
+      tallGrassList.push(new TallGrass(16, 32));
+      tallGrassList.push(new TallGrass(32, 32));
+      tallGrassList.push(new TallGrass(16, 48));
+      tallGrassList.push(new TallGrass(32, 48));
+      tallGrassList.push(new TallGrass(16, 64));
+      tallGrassList.push(new TallGrass(32, 64));
+
+      tallGrassList.push(new TallGrass(144, 48));
+      tallGrassList.push(new TallGrass(144, 64));
+      tallGrassList.push(new TallGrass(128, 48));
+      tallGrassList.push(new TallGrass(128, 64));
+      tallGrassList.push(new TallGrass(112, 48));
+      tallGrassList.push(new TallGrass(112, 64));
     }
+  }
+
+  function changeLocation(location) {
+    overworldLocation = location;
+    initOverworld();
   }
 
   //Picks a random tall grass to shake
@@ -751,6 +846,9 @@ export const s = (p) => {
 
     overworldBG = p.loadImage("./images/game-images/overworld_1.png");
     tallGrassImg = p.loadImage("./images/game-images/tall_grass.png");
+
+    upArrow = p.loadImage("./images/game-images/up_arrow.png");
+    downArrow = p.loadImage("./images/game-images/down_arrow.png");
   };
 
   // Setup function for p5. Initializes canvas & fonts
@@ -780,6 +878,8 @@ export const s = (p) => {
     if (inOverworld) {
       overworldBG.resizeNN(160 * canvasScale, 144 * canvasScale);
       tallGrassImg.resizeNN(16 * canvasScale, 16 * canvasScale);
+      upArrow.resizeNN(24 * canvasScale, 12 * canvasScale);
+      downArrow.resizeNN(24 * canvasScale, 12 * canvasScale);
       p.image(overworldBG, 0, 0);
 
       tallGrassList.forEach((grass) => {
@@ -800,6 +900,17 @@ export const s = (p) => {
           );
         }
       });
+
+      switch (overworldLocation) {
+        case "path":
+          p.image(upArrow, 68 * canvasScale, 4 * canvasScale);
+          break;
+        case "rocky":
+          p.image(downArrow, 68 * canvasScale, 128 * canvasScale);
+          break;
+        default:
+          p.image(downArrow, 68 * canvasScale, 128 * canvasScale);
+      }
     }
 
     // Everything to render only during an encounter
@@ -1029,9 +1140,47 @@ export const s = (p) => {
         ) {
           console.log("test");
           encounterStartAnim = true;
-          preEncounter(randomPokemon(locationPokemon));
+
+          switch (overworldLocation) {
+            case "path":
+              preEncounter(randomPokemon(pathPokemon));
+              break;
+            case "rocky":
+              preEncounter(randomPokemon(rockyPokemon));
+              break;
+            default:
+              // code block
+              preEncounter(randomPokemon(rockyPokemon));
+          }
         }
       });
+
+      switch (overworldLocation) {
+        case "path":
+          //p.image(upArrow, 68 * canvasScale, 4 * canvasScale);
+          if (
+            p.mouseX > 68 * canvasScale &&
+            p.mouseX < (68 + 24) * canvasScale &&
+            p.mouseY > 4 * canvasScale &&
+            p.mouseY < (4 + 12) * canvasScale
+          ) {
+            changeLocation("rocky");
+          }
+          break;
+        case "rocky":
+          //p.image(downArrow, 68 * canvasScale, 128 * canvasScale);
+          if (
+            p.mouseX > 68 * canvasScale &&
+            p.mouseX < (68 + 24) * canvasScale &&
+            p.mouseY > 128 * canvasScale &&
+            p.mouseY < (128 + 12) * canvasScale
+          ) {
+            changeLocation("path");
+          }
+          break;
+        default:
+        //p.image(downArrow, 68 * canvasScale, 128 * canvasScale);
+      }
     }
 
     //Either moves on to main encounter menu, or ends the encounter depending on booleans

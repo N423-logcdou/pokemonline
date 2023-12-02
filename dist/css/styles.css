@@ -2,6 +2,10 @@
   font-family: helveticaRounded;
   src: url(./fonts/HelveticaRoundedBold.otf);
 }
+@font-face {
+  font-family: benton;
+  src: url(./fonts/BentonSans-Regular_T.ttf);
+}
 nav {
   width: 100%;
   height: 154px;
@@ -211,6 +215,44 @@ nav .nav-btns #login-zone {
     font-size: 18px;
   }
 }
+.home-title {
+  margin-top: 35px;
+  color: #385A94;
+  margin-bottom: 50px;
+}
+
+.home-content-body {
+  display: flex;
+}
+.home-content-body h2 {
+  color: #385A94;
+}
+.home-content-body p {
+  color: #385A94;
+  font-family: benton;
+  font-size: 18px;
+}
+.home-content-body .home-content-about {
+  width: 40%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home-content-body .home-content-game {
+  width: 60%;
+  padding: 0 40px;
+}
+.home-content-body .home-content-game .map-imgs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.home-content-body .home-content-game .map-imgs img {
+  width: 45%;
+  image-rendering: pixelated;
+}
+
 #loginPage {
   padding-top: 50px;
   display: flex;
@@ -565,6 +607,7 @@ h1 {
   width: 1112px;
   min-height: 500px;
   background-color: #FFFFFF;
+  margin-bottom: 100px;
 }
 
 /*# sourceMappingURL=styles.css.map */

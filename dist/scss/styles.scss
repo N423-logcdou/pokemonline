@@ -1,6 +1,7 @@
 @import './variables.scss';
 @import './fonts.scss';
 @import './nav.scss';
+@import './home.scss';
 @import './login.scss';
 @import './pokedex.scss';
 @import './storage.scss';
@@ -39,6 +40,7 @@ h1 {
         width: 1112px;
         min-height: 500px;
         background-color: $site-white;
+        margin-bottom: 100px;
     }
 }
 
