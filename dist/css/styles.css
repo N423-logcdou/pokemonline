@@ -396,6 +396,10 @@ nav .nav-btns #login-zone {
   background-color: #D685AD;
 }
 
+.play-content {
+  height: 800px;
+}
+
 .storage-title {
   margin-top: 35px;
   color: #385A94;
