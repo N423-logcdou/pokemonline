@@ -136,7 +136,7 @@ export const s = (p) => {
     },
     {
       name: "raichu",
-      poolVal: 10000,
+      poolVal: 10,
       minLevel: 25,
       maxLevel: 45,
     },
