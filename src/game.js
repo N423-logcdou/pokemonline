@@ -229,7 +229,7 @@ export const s = (p) => {
     },
     {
       name: "wooper",
-      poolVal: 35000,
+      poolVal: 35,
       minLevel: 5,
       maxLevel: 19,
     },
