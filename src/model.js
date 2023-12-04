@@ -84,7 +84,7 @@ let pokedexList = [
   { name: "dugtrio", encountered: false },
   { name: "drifloon", encountered: false },
   { name: "drifblim", encountered: false },
-  { name: "wooper", encountered: false },
+  { name: "wooper-paldea", encountered: false },
   { name: "clodsire", encountered: false },
   { name: "shuckle", encountered: false },
   { name: "croagunk", encountered: false },
@@ -467,7 +467,7 @@ async function trainersLoad() {
 async function pokedexLoad() {
   userData.pokedex.forEach((pokemon) => {
     pokedexList.forEach((dex) => {
-      if (pokemon.name == dex.name) {
+      if (pokemon.name == dex.name.split("-")[0]) {
         dex.encountered = true;
       }
     });
@@ -476,9 +476,6 @@ async function pokedexLoad() {
   console.log(pokedexList);
 
   for (let i = 0; i < pokedexList.length; i++) {
-    if (pokedexList[i].name == "wooper") {
-      pokedexList[i].name = "wooper-paldea";
-    }
 
     await $.getJSON(`https://pokeapi.co/api/v2/pokemon/${pokedexList[i].name}`, function (data) {
       if (pokedexList[i].encountered) {
