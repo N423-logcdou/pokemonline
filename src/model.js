@@ -78,6 +78,8 @@ let pokedexList = [
   { name: "hoppip", encountered: false },
   { name: "skiploom", encountered: false },
   { name: "jumpluff", encountered: false },
+  { name: "meditite", encountered: false },
+  { name: "medicham", encountered: false },
   { name: "diglett", encountered: false },
   { name: "dugtrio", encountered: false },
   { name: "drifloon", encountered: false },

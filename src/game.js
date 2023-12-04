@@ -275,6 +275,18 @@ export const s = (p) => {
       minLevel: 37,
       maxLevel: 52,
     },
+    {
+      name: "meditite",
+      poolVal: 35,
+      minLevel: 10,
+      maxLevel: 36,
+    },
+    {
+      name: "medicham",
+      poolVal: 8,
+      minLevel: 37,
+      maxLevel: 56,
+    },
   ];
 
   class TallGrass {

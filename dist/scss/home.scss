@@ -39,6 +39,11 @@
                 image-rendering: pixelated;
             }
         }
+
+        .gameplay-imgs {
+            display: flex;
+            justify-content: space-evenly;
+        }
     }
 }
 
@@ -52,6 +57,10 @@
 
         .home-content-game {
             width: 100%;
+
+            .gameplay-imgs {
+                margin-bottom: 50px;
+            }
         }
     }
 }

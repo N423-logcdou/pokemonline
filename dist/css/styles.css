@@ -275,6 +275,10 @@ footer p {
   width: 45%;
   image-rendering: pixelated;
 }
+.home-content-body .home-content-game .gameplay-imgs {
+  display: flex;
+  justify-content: space-evenly;
+}
 
 @media only screen and (max-width: 648px) {
   .home-content-body {
@@ -285,6 +289,9 @@ footer p {
   }
   .home-content-body .home-content-game {
     width: 100%;
+  }
+  .home-content-body .home-content-game .gameplay-imgs {
+    margin-bottom: 50px;
   }
 }
 #loginPage {
