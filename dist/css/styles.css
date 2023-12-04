@@ -510,6 +510,26 @@ form {
   display: flex;
   justify-content: center;
 }
+form #trainer-search {
+  font-family: benton;
+  padding: 5px;
+  border-radius: 10px;
+}
+form #trainer-search-submit {
+  margin-left: 10px;
+  border: none;
+  padding: 10px 15px;
+  font-family: helveticaRounded;
+  color: #385A94;
+  background-color: #A2EEEE;
+  border-radius: 10px;
+  transition: color 0.2s;
+  transition: background-color 0.2s;
+}
+form #trainer-search-submit:hover {
+  color: #de4777;
+  background-color: #385A94;
+}
 
 #trainers {
   display: flex;
@@ -530,6 +550,7 @@ form {
   height: 100px;
   background-color: #77e4e4;
   border-radius: 15px;
+  padding: 10px;
 }
 #trainers .trainer .trainer-icon img {
   width: 100%;
@@ -551,6 +572,9 @@ form {
 }
 #trainers .trainer p {
   margin: 0;
+  font-family: benton;
+  color: #385A94;
+  font-size: 18px;
 }
 
 .profile-title {

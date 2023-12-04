@@ -6,6 +6,30 @@
 form {
     display: flex;
     justify-content: center;
+
+    #trainer-search {
+        font-family: benton;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    #trainer-search-submit {
+        margin-left: 10px;
+        border: none;
+        padding: 10px 15px;
+        font-family: helveticaRounded;
+        color: $site-navy;
+        background-color: $site-light-blue;
+        border-radius: 10px;
+
+        transition: color .2s;
+        transition: background-color .2s;
+    }
+
+    #trainer-search-submit:hover {
+        color: $site-red;
+        background-color: $site-navy;
+    }
 }
 
 #trainers {
@@ -27,6 +51,7 @@ form {
             height: 100px;
             background-color: $site-blue;
             border-radius: 15px;
+            padding: 10px;
             img {
                 width: 100%;
                 image-rendering: pixelated;
@@ -52,6 +77,9 @@ form {
 
         p {
             margin: 0;
+            font-family: benton;
+            color: $site-navy;
+            font-size: 18px;
         }
 
 
