@@ -126,6 +126,21 @@ nav .nav-btns #login-zone {
   gap: 20px;
 }
 
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background-color: #A2EEEE;
+  height: 60px;
+}
+footer p {
+  margin: 0;
+  color: #385A94;
+  font-family: benton;
+  font-size: 18px;
+}
+
 @media only screen and (max-width: 1530px) {
   nav {
     padding: 0 30px;
@@ -147,6 +162,9 @@ nav .nav-btns #login-zone {
   }
   nav .nav-btns #login-zone .nav-user-btn p {
     font-size: 18px;
+  }
+  footer p {
+    font-size: 14px;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -180,6 +198,11 @@ nav .nav-btns #login-zone {
   }
   nav .nav-btns #login-zone .nav-user-btn p {
     font-size: 18px;
+  }
+}
+@media only screen and (max-width: 822px) {
+  footer p {
+    font-size: 12px;
   }
 }
 @media only screen and (max-width: 492px) {
@@ -253,6 +276,17 @@ nav .nav-btns #login-zone {
   image-rendering: pixelated;
 }
 
+@media only screen and (max-width: 648px) {
+  .home-content-body {
+    flex-direction: column;
+  }
+  .home-content-body .home-content-about {
+    width: 100%;
+  }
+  .home-content-body .home-content-game {
+    width: 100%;
+  }
+}
 #loginPage {
   padding-top: 50px;
   display: flex;
@@ -568,14 +602,22 @@ form {
 }
 .user-profile .user-profile-username {
   display: flex;
+  align-items: center;
   gap: 20px;
   margin-top: 30px;
 }
-.user-profile .user-profile-username h3 {
-  margin-top: 0;
+.user-profile .user-profile-username p {
+  margin: 0;
+  font-family: benton;
+  font-size: 18px;
+  font-weight: bold;
 }
-.user-profile h3 {
+.user-profile p {
+  margin-bottom: 0;
   margin-top: 20px;
+  font-family: benton;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #icon-modal-body {

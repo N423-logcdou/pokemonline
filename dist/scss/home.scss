@@ -41,3 +41,17 @@
         }
     }
 }
+
+@media only screen and (max-width: 648px) {
+    .home-content-body {
+        flex-direction: column;
+
+        .home-content-about {
+            width: 100%;
+        }
+
+        .home-content-game {
+            width: 100%;
+        }
+    }
+}

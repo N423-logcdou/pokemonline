@@ -1,71 +1,114 @@
 <h1 class="profile-title">User's Profile</h1>
 <div class="user-profile">
-    <div class="user-profile-icn" data-bs-toggle="modal" data-bs-target="#change-sprite-modal">
-        <img src="./images/game-images/pokemon/missing.png" alt="" id="user-profile-icn-img">
-    </div>
-    <div class="user-profile-username">
-        <h3>Username:</h3>
-        <button type="button" class="btn btn-primary" id="edit-username-btn" data-bs-toggle="modal" data-bs-target="#edit-username-modal">
-            <i class="fa-solid fa-pencil"></i>
-        </button>
-    </div>
-    <h3 id="profile-pokedex">Pokédex:</h3>
-    <h3 id="profile-caught">Pokémon Caught:</h3>
-
-    <!-- The Modal -->
-<div class="modal fade" id="change-sprite-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-  <!-- Modal Header -->
-  <div class="modal-header">
-    <h4 class="modal-title">Choose Trainer Sprite</h4>
-    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+  <div
+    class="user-profile-icn"
+    data-bs-toggle="modal"
+    data-bs-target="#change-sprite-modal"
+  >
+    <img
+      src="./images/game-images/pokemon/missing.png"
+      alt=""
+      id="user-profile-icn-img"
+    />
   </div>
-
-  <!-- Modal body -->
-  <div class="modal-body" id="icon-modal-body">
-    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="trainer-sprite-1-confirm">
-        <img src="./images/game-images/trainer-front.png" alt="">
-    </button>
-    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="trainer-sprite-2-confirm">
-        <img src="./images/game-images/trainer2-front.png" alt="">
+  <div class="user-profile-username">
+    <p>Username:</p>
+    <button
+      type="button"
+      class="btn btn-primary"
+      id="edit-username-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#edit-username-modal"
+    >
+      <i class="fa-solid fa-pencil"></i>
     </button>
   </div>
+  <p id="profile-pokedex">Pokédex:</p>
+  <p id="profile-caught">Pokémon Caught:</p>
 
-  <!-- Modal footer -->
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-  </div>
-  </div>
-  </div>
-  </div>
-
-<!-- The Modal -->
-<div class="modal fade" id="edit-username-modal">
+  <!-- The Modal -->
+  <div class="modal fade" id="change-sprite-modal">
     <div class="modal-dialog">
       <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Choose Trainer Sprite</h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
 
-  <!-- Modal Header -->
-  <div class="modal-header">
-    <h4 class="modal-title">Edit Username</h4>
-    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <!-- Modal body -->
+        <div class="modal-body" id="icon-modal-body">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            id="trainer-sprite-1-confirm"
+          >
+            <img src="./images/game-images/trainer-front.png" alt="" />
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            id="trainer-sprite-2-confirm"
+          >
+            <img src="./images/game-images/trainer2-front.png" alt="" />
+          </button>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Modal body -->
-  <div class="modal-body" id="icon-modal-body">
-    <input type="text" id="modal-username-field" class="form-control" value=""/>
-  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="edit-username-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Username</h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
 
-  <!-- Modal footer -->
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="username-confirm">Confirm</button>
-    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-  </div>
-  </div>
-  </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="icon-modal-body">
+          <input
+            type="text"
+            id="modal-username-field"
+            class="form-control"
+            value=""
+          />
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            id="username-confirm"
+          >
+            Confirm
+          </button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
-

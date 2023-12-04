@@ -760,7 +760,7 @@ export const s = (p) => {
           }
         }, 800);
       }
-    }, 3000);
+    }, 2000);
   }
 
   // Resets variables when encounter is complete

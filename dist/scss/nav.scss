@@ -147,6 +147,22 @@ nav {
     }
 }
 
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background-color: $site-light-blue;
+    height: 60px;
+
+    p {
+        margin: 0;
+        color:$site-navy;
+        font-family: benton;
+        font-size: 18px;
+    }
+  }
+
 @media only screen and (max-width: 1530px) {
     nav {
         padding: 0 30px;
@@ -180,6 +196,12 @@ nav {
 
         
         
+    }
+
+    footer {
+        p {
+            font-size: 14px;
+        }
     }
   }
 
@@ -231,6 +253,14 @@ nav {
     }
   }
 
+  @media only screen and (max-width: 822px) {
+    footer {
+        p {
+            font-size: 12px;
+        }
+    }
+  }
+
   @media only screen and (max-width: 492px) {
     nav {
         padding: 0 5px;
@@ -278,3 +308,5 @@ nav {
         
     }
   }
+
+  

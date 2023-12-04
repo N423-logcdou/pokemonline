@@ -90,6 +90,8 @@ let pokedexList = [
   { name: "ditto", encountered: false },
 ];
 
+let pokedexData = [];
+
 let selectedPokemon = null;
 
 export let userData = {};
@@ -248,7 +250,7 @@ function profileLoad() {
 
   $(".profile-title").html(userData.username + "'s Profile");
 
-  $(".user-profile-username h3").html("Username: " + userData.username);
+  $(".user-profile-username p").html("Username: " + userData.username);
 
   $("#profile-pokedex").html("Pokédex: " + userData.pokedex.length);
   $("#profile-caught").html("Pokémon Caught: " + userData.pokemon.length);
@@ -471,35 +473,35 @@ async function pokedexLoad() {
 
   console.log(pokedexList);
 
-  await pokedexList.forEach((dex, index) => {
-    if (dex.name == "wooper") {
-      dex.name = "wooper-paldea";
+  for (let i = 0; i < pokedexList.length; i++) {
+    if (pokedexList[i].name == "wooper") {
+      pokedexList[i].name = "wooper-paldea";
     }
-    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${dex.name}`, function (data) {
-      if (dex.encountered) {
+
+    await $.getJSON(`https://pokeapi.co/api/v2/pokemon/${pokedexList[i].name}`, function (data) {
+      if (pokedexList[i].encountered) {
         $(".pokedex").append(
-          `<div class="pokedex-box" id="pokedex-box-${index}">
+          `<div class="pokedex-box" id="pokedex-box-${i}">
           <a href="https://bulbapedia.bulbagarden.net/wiki/${capitalizeFirstLetter(
-            dex.name.split("-")[0]
+            pokedexList[i].name.split("-")[0]
           )}_(Pok%C3%A9mon)" target="_blank" class="pokedex-link"><div class="pokedex-img-box" >
-  
-          <img src="./images/game-images/pokemon/${
-            data.name.split("-")[0]
+
+          <img src="./images/game-images/pokemon/${data.name.split("-")[0]
           }.png">
           </div></a>
-          <h6>#${index + 1}<h6>
+          <h6>#${i + 1}<h6>
           <a href="https://bulbapedia.bulbagarden.net/wiki/${capitalizeFirstLetter(
-            dex.name.split("-")[0]
+            pokedexList[i].name.split("-")[0]
           )}_(Pok%C3%A9mon)" target="_blank" class="pokedex-link"><h5>${capitalizeFirstLetter(
-            dex.name.split("-")[0]
+            pokedexList[i].name.split("-")[0]
           )}</h5></a>
-          <div class="pokedex-type-box" id="pokedex-type-box-${index}"></div>
+          <div class="pokedex-type-box" id="pokedex-type-box-${i}"></div>
           </div>
           `
         );
 
         data.types.forEach((type) => {
-          $(`#pokedex-type-box-${index}`).append(
+          $(`#pokedex-type-box-${i}`).append(
             `<p class="type-text, ${type.type.name}">${capitalizeFirstLetter(
               type.type.name
             )}</p>`
@@ -507,20 +509,22 @@ async function pokedexLoad() {
         });
       } else {
         $(".pokedex").append(
-          `<div class="pokedex-box" id="pokedex-box-${index}">
+          `<div class="pokedex-box" id="pokedex-box-${i}">
             <div class="pokedex-img-box">
-    
+
           <img src="./images/game-images/pokemon/missing.png">
           </div>
-          <h6>#${index + 1}<h6>
+          <h6>#${i + 1}<h6>
           <h5>?????</h5>
-          <div class="pokedex-type-box" id="pokedex-type-box-${index}"></div>
+          <div class="pokedex-type-box" id="pokedex-type-box-${i}"></div>
           </div>
           `
         );
       }
     });
-  });
+
+
+  }
 }
 
 export async function updateUserInfo() {
