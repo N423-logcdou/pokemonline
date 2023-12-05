@@ -12,13 +12,14 @@
     color: $site-navy;
     .pokedex-box {
 
-        .pokedex-link {
+        .pokedex-entry-link {
             text-decoration: none;
             color: $site-navy;
             transition: color .2s;
+            cursor: pointer;
         }
 
-        .pokedex-link:hover {
+        .pokedex-entry-link:hover {
             color: $site-red;
         }
 
@@ -33,6 +34,7 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 10px;
+            cursor: pointer;
 
             transition: background-color .2s;
 

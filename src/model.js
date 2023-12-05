@@ -204,6 +204,15 @@ function changePage(pageID, subpageID, callback) {
       logout();
       window.location.hash = "#home";
       break;
+    case "pokedex-entry":
+      if (myp5 != null) {
+        myp5.remove();
+      }
+      $.get(`pages/pokedex-entry.html`, function (contents) {
+        $("#content").html(contents);
+        pokedexEntryLoad(subpageID);
+      });
+      break;
     default:
       $.get(`pages/home.html`, function (contents) {
         $("#content").html(contents);
@@ -226,6 +235,69 @@ function clearPokedex() {
 
 function homeLoad() {
   $("#poke-count").html(pokedexList.length);
+}
+
+function abilityFormat(ability) {
+  let abilityArray = ability.split("-");
+  let newAbilityStr = "";
+  abilityArray.forEach((abilityPart) => {
+    abilityPart = capitalizeFirstLetter(abilityPart);
+    newAbilityStr += " " + abilityPart;
+  });
+  newAbilityStr = newAbilityStr.trim();
+  console.log(newAbilityStr);
+  return newAbilityStr;
+}
+
+async function pokedexEntryLoad(id) {
+  console.log(pokedexList[id].name);
+  let speciesName = pokedexList[id].name;
+  if (pokedexList[id].name == "wooper-paldea") {
+    speciesName = "wooper";
+  }
+  let pokeName = pokedexList[id].name;
+  await $.getJSON(
+    `https://pokeapi.co/api/v2/pokemon-species/${speciesName}`,
+    function (data) {
+      $(".entry-img img").attr(
+        "src",
+        `./images/game-images/pokemon/${speciesName}.png`
+      );
+      $("#pokedex-entry-name").html(capitalizeFirstLetter(data.name));
+      $("#pokedex-entry-num").html(
+        capitalizeFirstLetter(`#${parseInt(id) + 1}`)
+      );
+      data.flavor_text_entries.forEach((entry) => {
+        if (entry.language.name == "en") {
+          $("#pokedex-entry-desc").html(entry.flavor_text);
+        }
+      });
+    }
+  );
+  await $.getJSON(
+    `https://pokeapi.co/api/v2/pokemon/${pokeName}`,
+    function (data) {
+      $(".entry-basic-info-mid").html("");
+      console.log(data.types);
+      data.types.forEach((type) => {
+        $(".entry-basic-info-mid").append(
+          `<div class="entry-type ${type.type.name}">${capitalizeFirstLetter(
+            type.type.name
+          )}</div>`
+        );
+      });
+      $("#entry-stat-hp h4").html(data.stats[0].base_stat);
+      $("#entry-stat-attk h4").html(data.stats[1].base_stat);
+      $("#entry-stat-def h4").html(data.stats[2].base_stat);
+      $("#entry-stat-spak h4").html(data.stats[3].base_stat);
+      $("#entry-stat-spdf h4").html(data.stats[4].base_stat);
+      $("#entry-stat-spd h4").html(data.stats[5].base_stat);
+      $("#abilities").html("");
+      data.abilities.forEach((ability) => {
+        $("#abilities").append(`<p>${abilityFormat(ability.ability.name)}</p>`);
+      });
+    }
+  );
 }
 
 function profileLoad() {
@@ -476,39 +548,37 @@ async function pokedexLoad() {
   console.log(pokedexList);
 
   for (let i = 0; i < pokedexList.length; i++) {
+    await $.getJSON(
+      `https://pokeapi.co/api/v2/pokemon/${pokedexList[i].name}`,
+      function (data) {
+        if (pokedexList[i].encountered) {
+          $(".pokedex").append(
+            `<div class="pokedex-box" id="pokedex-box-${i}">
+          <div class="pokedex-img-box" id="pokedex-img-box-${i}" >
 
-    await $.getJSON(`https://pokeapi.co/api/v2/pokemon/${pokedexList[i].name}`, function (data) {
-      if (pokedexList[i].encountered) {
-        $(".pokedex").append(
-          `<div class="pokedex-box" id="pokedex-box-${i}">
-          <a href="https://bulbapedia.bulbagarden.net/wiki/${capitalizeFirstLetter(
-            pokedexList[i].name.split("-")[0]
-          )}_(Pok%C3%A9mon)" target="_blank" class="pokedex-link"><div class="pokedex-img-box" >
-
-          <img src="./images/game-images/pokemon/${data.name.split("-")[0]
+          <img src="./images/game-images/pokemon/${
+            data.name.split("-")[0]
           }.png">
-          </div></a>
+          </div>
           <h6>#${i + 1}<h6>
-          <a href="https://bulbapedia.bulbagarden.net/wiki/${capitalizeFirstLetter(
-            pokedexList[i].name.split("-")[0]
-          )}_(Pok%C3%A9mon)" target="_blank" class="pokedex-link"><h5>${capitalizeFirstLetter(
-            pokedexList[i].name.split("-")[0]
-          )}</h5></a>
+          <h5 class="pokedex-entry-link" id="pokedex-entry-link-${i}">${capitalizeFirstLetter(
+              pokedexList[i].name.split("-")[0]
+            )}</h5>
           <div class="pokedex-type-box" id="pokedex-type-box-${i}"></div>
           </div>
           `
-        );
-
-        data.types.forEach((type) => {
-          $(`#pokedex-type-box-${i}`).append(
-            `<p class="type-text, ${type.type.name}">${capitalizeFirstLetter(
-              type.type.name
-            )}</p>`
           );
-        });
-      } else {
-        $(".pokedex").append(
-          `<div class="pokedex-box" id="pokedex-box-${i}">
+
+          data.types.forEach((type) => {
+            $(`#pokedex-type-box-${i}`).append(
+              `<p class="type-text, ${type.type.name}">${capitalizeFirstLetter(
+                type.type.name
+              )}</p>`
+            );
+          });
+        } else {
+          $(".pokedex").append(
+            `<div class="pokedex-box" id="pokedex-box-${i}">
             <div class="pokedex-img-box">
 
           <img src="./images/game-images/pokemon/missing.png">
@@ -518,12 +588,23 @@ async function pokedexLoad() {
           <div class="pokedex-type-box" id="pokedex-type-box-${i}"></div>
           </div>
           `
-        );
+          );
+        }
       }
-    });
-
-
+    );
   }
+
+  $(".pokedex-entry-link").on("click", function () {
+    let dexID = this.id.substring(19);
+    console.log(dexID);
+    window.location.hash = `#pokedex-entry/${dexID}`;
+  });
+
+  $(".pokedex-img-box").on("click", function () {
+    let dexID = this.id.substring(16);
+    console.log(dexID);
+    window.location.hash = `#pokedex-entry/${dexID}`;
+  });
 }
 
 export async function updateUserInfo() {
@@ -666,5 +747,5 @@ export function changeRoute() {
   let pageID = pageLayers[0];
   let subpageID = pageLayers[1];
 
-  changePage(pageID);
+  changePage(pageID, subpageID);
 }
