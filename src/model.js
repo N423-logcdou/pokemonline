@@ -641,6 +641,7 @@ onAuthStateChanged(auth, (user) => {
   </a><a href="#logout" class="nav-user-btn">
     <p>Log Out</p>
 </a>`);
+    $(".loggedIn").removeClass("off");
     currentUID = uid;
     collectUserInfo(uid);
   } else {
@@ -648,6 +649,7 @@ onAuthStateChanged(auth, (user) => {
     $("#login-zone").html(`<a href="#login" class="nav-user-btn">
     <p>Log In</p>
 </a>`);
+    $(".loggedIn").addClass("off");
     userData = {};
     currentUID = null;
   }

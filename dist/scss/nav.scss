@@ -56,11 +56,22 @@ nav {
 
         }
 
+        .off{
+            color: gray;
+            filter: drop-shadow(0 8px 0px gray);
+            cursor: auto;
+        }
+
         .nav-btn:hover{
             color: $site-red;
             filter: drop-shadow(0 8px 0px $site-red);
             
             transition: filter 0.2s, color 0.2s;
+        }
+
+        .off:hover{
+            color: gray;
+            filter: drop-shadow(0 8px 0px gray);
         }
 
         #nav-hamburger-btn {

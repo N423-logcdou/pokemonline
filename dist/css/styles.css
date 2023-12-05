@@ -55,10 +55,19 @@ nav .nav-btns .nav-btn {
   filter: drop-shadow(0 8px 0px #385A94);
   transition: filter 0.2s, color 0.2s;
 }
+nav .nav-btns .off {
+  color: gray;
+  filter: drop-shadow(0 8px 0px gray);
+  cursor: auto;
+}
 nav .nav-btns .nav-btn:hover {
   color: #de4777;
   filter: drop-shadow(0 8px 0px #de4777);
   transition: filter 0.2s, color 0.2s;
+}
+nav .nav-btns .off:hover {
+  color: gray;
+  filter: drop-shadow(0 8px 0px gray);
 }
 nav .nav-btns #nav-hamburger-btn {
   display: none;
